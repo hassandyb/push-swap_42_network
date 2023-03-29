@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/28 17:30:56 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:04:00 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,16 +129,57 @@ char	*ft_join_args(char **argv)
 	}
 	return (stock);
 }
+//--------------------------------------
+int ft_count(char **split)
+{
+	int l;
+
+	l = 0;
+	while(split[l])
+		l++;
+	return l;
+}
+
+void	ft_array_protection(int *to_check, char **to_free)
+{
+	if(to_check == NULL)
+	{
+		ft_free_double_pointer(to_free);
+		exit (1);
+	}
+}	
+int *ft_creat_array(char **split)
+{
+	int	i;
+	int	*numbers;
+
+	i = 0;
+	numbers = (int *)malloc(ft_count(split) * sizeof(int));
+	ft_array_protection(numbers, split);
+	while(split[i])
+	{
+		numbers
+	}
+	
+}
 
 int main (int argc, char **argv)
 {
-	char *stock;
-	char **numbers;
+	char 	*stock;
+	char 	**split;
+	int		*numbers;
 	if(argc == 1)
 		exit (0);
 	ft_check(argv);
 	ft_check2(argv);
 	stock = ft_join_args(argv);
-	// numbers = ft_split(stock);
-	// printf("%s", stock)
+	split = ft_split(stock);
+	numbers = ft_creat_array(split);
+	
+	// int j = -1;
+	// while(numbers[++j])
+	// 	printf("%s\n", numbers[j]);
+
 }
+
+//you need to handler the case -- and ++ -+ +-....

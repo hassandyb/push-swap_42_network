@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/27 20:48:25 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:41:28 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 
 #include <string.h>
 
+void ft_check(char **argv);
+void	ft_check2(char **argv);
+int	ft_strlen(char *s);
+void ft_protection(char *to_check, char *to_free);
+char	*ft_strjoin(char *stock, char *arg);
+char	*ft_join_args(char **argv);
+int	ft_count(char *stock);
+char	*ft_substr(char *stock, int begin, int len, char **split);
+char **ft_split(char *stock);
+void ft_free_double_pointer(char **s);
+void	ft_protection_double_ptr(char **to_check, char *to_free);
 
 
 #endif
