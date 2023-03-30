@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/29 15:04:00 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/03/30 16:17:03 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@ void ft_check(char **argv)
 	int y;
 	int x;
 	
-	y = 0;
-	while(argv[++y])
+	y = 1;
+	while(argv[y])
 	{
 		x = 0;	
 		while(argv[y][x] != '\0' && (argv[y][x] == ' ' || argv[y][x] == '\t')) 
 			x++;
 		if(argv[y][x] == '\0' || argv[y][0] == '\0')// for ar arg full of spaces and tabs or an empty arg == \0
 		{
-			write(2, "Error!", 7);
+			write(2, "Error :\nEmpty arg or arg full of spaces and tabs!" , 50);
 			exit(0); 
 		}
+		y++;
 	}
 }
 
@@ -42,23 +43,49 @@ void	ft_check2(char **argv)
 	int	y;
 	int	x;
 
-	y = 0;
-	while(argv[++y])
+	y = 1;
+	while(argv[y])
 	{
-		x = -1;
-		while(argv[y][++x])
+		x = 0;
+		while(argv[y][x])
 		{
-			if(argv[y][x] != ' ' && argv[y][x] != '\t' && argv[y][x] != '-' && argv[y][x] != '+' && (argv[y][x] < '0' || argv[y][x] > '9'))
+			if(argv[y][x] != ' ' && argv[y][x] != '\t' && argv[y][x] != '-'
+				&& argv[y][x] != '+' && (argv[y][x] < '0' || argv[y][x] > '9'))
 			{
-				write(2, "Error!", 7);
+				write(2, "Error :\nCheck args!", 20);
 				exit(0); 
 			}
-			if((argv[y][x] == '-' || argv[y][x] == '+') && (argv[y][x+1] == ' ' || argv[y][x+1] == '\t'))
+			if((argv[y][x] == '-' || argv[y][x] == '+') && (argv[y][x+1] == ' ' 
+				|| argv[y][x+1] == '\t'))
 			{
-				write(2, "Error!", 7);
+				write(2, "Error :\nTab or space after + or -!", 35);
 				exit(0); 
 			}
+			x++;
 		}
+		y++;
+	}
+}
+
+void ft_check3(char **argv)
+{
+	int y;
+	int x;
+
+	y = 1;
+	while(argv[y])
+	{
+		x = 0;
+		while(argv[y][x])
+		{
+			if((argv[y][x] == '-' || argv[y][x] == '+') && (argv[y][x+1] == '-' || argv[y][x+1] == '+'))
+			{
+				write(1, "Error :\nYou have -- ++ -+ or +-!", 33);
+				exit (0);
+			}
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -130,56 +157,127 @@ char	*ft_join_args(char **argv)
 	return (stock);
 }
 //--------------------------------------
-int ft_count(char **split)
+int ft_arraylen(char **split)
 {
-	int l;
+	int	l;
 
 	l = 0;
 	while(split[l])
 		l++;
-	return l;
+	return (l);
 }
 
-void	ft_array_protection(int *to_check, char **to_free)
+int ft_atoi(char *s)
 {
-	if(to_check == NULL)
+	int i;
+	int sign;
+	int result;
+	
+	result = 0;
+	sign = 1;
+	i = 0;
+	if(s[0] == '-' || s[0] == '+')
 	{
-		ft_free_double_pointer(to_free);
-		exit (1);
+		if(s[0] == '-')
+			sign = -1;
+		i++;
+	}
+	if (s[i] == '\0')// in case you have - or + only
+	{
+		write(1 , "=========",10);
+		exit(1);
+	}
+	while(s[i] >= '0' && s[i] <= '9')
+	{
+		result = (result * 10) + s[i] - '0';
+		i++;
+	}
+	return (result * sign);
+}
+
+void	ft_no_doubles(int *numbers, int len)
+{
+	int j;
+	int	i;
+	int count;
+
+	
+	j = 0;
+	while(j < len)
+	{
+		count = 0;
+		i = 0;
+		while(i < len)
+		{
+			if(numbers[j] == numbers[i])
+				count++;
+			i++;
+		}
+		if(count > 1)
+		{
+			write(2, "Error : \nDouble number!", 24);
+			exit (0);
+		}
+		j++;
 	}
 }	
-int *ft_creat_array(char **split)
+
+int *ft_creat_array(char **split, int len)
 {
 	int	i;
 	int	*numbers;
 
 	i = 0;
-	numbers = (int *)malloc(ft_count(split) * sizeof(int));
-	ft_array_protection(numbers, split);
+	numbers = (int *)malloc(len * sizeof(int));
+	if(numbers == NULL)
+	{
+		ft_free_double_pointer(split);
+		exit (1);
+	}
 	while(split[i])
 	{
-		numbers
+		numbers[i] = ft_atoi(split[i]);
+		i++;
 	}
-	
+	ft_free_double_pointer(split);
+	return (numbers);
 }
+
 
 int main (int argc, char **argv)
 {
 	char 	*stock;
 	char 	**split;
 	int		*numbers;
+	int		len;
+	
 	if(argc == 1)
 		exit (0);
 	ft_check(argv);
 	ft_check2(argv);
+	ft_check3(argv);
 	stock = ft_join_args(argv);
 	split = ft_split(stock);
-	numbers = ft_creat_array(split);
+	len = ft_arraylen(split);
+	// printf("len  == %d\n\n", len);
 	
-	// int j = -1;
-	// while(numbers[++j])
-	// 	printf("%s\n", numbers[j]);
+	// int i = -1;
+	// while(split[++i])
+	// 	printf("%s  ", split[i]);
+
+	printf("\n");
+	
+	numbers = ft_creat_array(split, len);
+	
+	int j = -1;
+	while(++j < len)
+		printf("%d  ", numbers[j]);
+		
+	// ft_no_doubles(numbers, len);
+	// ft_not_sorted(numbers, len);
 
 }
 
 //you need to handler the case -- and ++ -+ +-....
+//You have -- ++ -+ or +-!
+// go to atoi and handler the error text

@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/29 14:41:28 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/03/30 14:17:08 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*ft_substr(char *stock, int begin, int len, char **split);
 char **ft_split(char *stock);
 void ft_free_double_pointer(char **s);
 void	ft_protection_double_ptr(char **to_check, char *to_free);
+
 
 
 #endif

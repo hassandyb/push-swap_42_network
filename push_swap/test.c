@@ -20,11 +20,11 @@ typedef struct s_list
 
 int main ()
 {
-	t_list p0 = malloc (sizeof(t_list));
-	t_list p1 = malloc (sizeof(t_list));
-	t_list p2 = malloc (sizeof(t_list));
-	t_list p3 = malloc (sizeof(t_list));
-	t_list p4 = malloc (sizeof(t_list));
+	t_list *p0 = malloc (sizeof(t_list));
+	t_list *p1 = malloc (sizeof(t_list));
+	t_list *p2 = malloc (sizeof(t_list));
+	t_list *p3 = malloc (sizeof(t_list));
+	t_list *p4 = malloc (sizeof(t_list));
 
 	p0->data = 32;
 	p0->next = p1;

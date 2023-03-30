@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:56:24 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/29 14:41:12 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/03/30 16:16:33 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_count(char *stock)
 	int	h;
 
 	h = 0;
+	count = 0;
 	while(stock[h] == ' ')
 		h++;
 	while(stock[h])
@@ -83,7 +84,7 @@ char **ft_split(char *stock)
 	
 	n = ft_count(stock);
 	split = (char **)malloc((n + 1) * sizeof(char *));
-	ft_protection_double_pointer(split, stock);
+	ft_protection_double_ptr(split, stock);
 	x = 0;
 	y = 0;
 	while(y < n && stock[x] != '\0')
