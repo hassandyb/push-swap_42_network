@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/30 16:17:03 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/03/31 15:02:28 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int ft_arraylen(char **split)
 	return (l);
 }
 
-int ft_atoi(char *s)
+int ft_atoi(char *s, char **to_free)
 {
 	int i;
 	int sign;
@@ -184,7 +184,8 @@ int ft_atoi(char *s)
 	}
 	if (s[i] == '\0')// in case you have - or + only
 	{
-		write(1 , "=========",10);
+		write(2 , "Error :\nArg containing - or + only!",36);
+		ft_free_double_pointer(to_free);
 		exit(1);
 	}
 	while(s[i] >= '0' && s[i] <= '9')
@@ -193,6 +194,27 @@ int ft_atoi(char *s)
 		i++;
 	}
 	return (result * sign);
+}
+
+int *ft_creat_array(char **split, int len)
+{
+	int	i;
+	int	*numbers;
+
+	i = 0;
+	numbers = (int *)malloc(len * sizeof(int));
+	if(numbers == NULL)
+	{
+		ft_free_double_pointer(split);
+		exit (1);
+	}
+	while(split[i])
+	{
+		numbers[i] = ft_atoi(split[i], split);
+		i++;
+	}
+	ft_free_double_pointer(split);
+	return (numbers);
 }
 
 void	ft_no_doubles(int *numbers, int len)
@@ -220,29 +242,21 @@ void	ft_no_doubles(int *numbers, int len)
 		}
 		j++;
 	}
-}	
-
-int *ft_creat_array(char **split, int len)
-{
-	int	i;
-	int	*numbers;
-
-	i = 0;
-	numbers = (int *)malloc(len * sizeof(int));
-	if(numbers == NULL)
-	{
-		ft_free_double_pointer(split);
-		exit (1);
-	}
-	while(split[i])
-	{
-		numbers[i] = ft_atoi(split[i]);
-		i++;
-	}
-	ft_free_double_pointer(split);
-	return (numbers);
 }
 
+void	ft_not_sorted(int *numbers, int len)
+{
+	int i = 0;
+	while(i < len - 1)
+	{
+		if(numbers[i] > numbers[i+1])
+			return;
+		i++;
+	}
+	write(2, "Error :\nArgs are already sorted!",33);
+	free(numbers);
+	exit (1);
+}
 
 int main (int argc, char **argv)
 {
@@ -257,24 +271,28 @@ int main (int argc, char **argv)
 	ft_check2(argv);
 	ft_check3(argv);
 	stock = ft_join_args(argv);
+	//------
 	split = ft_split(stock);
+	//----
 	len = ft_arraylen(split);
-	// printf("len  == %d\n\n", len);
-	
-	// int i = -1;
-	// while(split[++i])
-	// 	printf("%s  ", split[i]);
-
-	printf("\n");
-	
 	numbers = ft_creat_array(split, len);
+	ft_no_doubles(numbers, len);
+	ft_not_sorted(numbers, len);
+	
+	
+
 	
 	int j = -1;
 	while(++j < len)
-		printf("%d  ", numbers[j]);
+		printf("%d  |", numbers[j]);
 		
-	// ft_no_doubles(numbers, len);
-	// ft_not_sorted(numbers, len);
+	printf("\n\n");
+	
+	
+	printf("\n\n");
+	j = -1;
+	while(++j < len)
+		printf("%d  )", numbers[j]);
 
 }
 
