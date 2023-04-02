@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:56:24 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/30 16:16:33 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/02 15:03:55 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ int	ft_count(char *stock)
 		h++;
 	}
 	return (count);
-}
-
-void ft_free_double_pointer(char **s)
-{
-	int l;
-
-	l = -1;
-	while(s[++l])
-		free(s[l]);
-	free(s);
 }
 
 char	*ft_substr(char *stock, int begin, int len, char **split)
@@ -63,15 +53,6 @@ char	*ft_substr(char *stock, int begin, int len, char **split)
 	}
 	sub[i] = '\0';
 	return (sub);
-}
-
-void	ft_protection_double_ptr(char **to_check, char *to_free)
-{
-	if(to_check == NULL)
-	{
-		free (to_free);
-		exit (1);
-	}
 }
 
 char **ft_split(char *stock)

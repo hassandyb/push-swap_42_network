@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/02 13:15:29 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/02 14:10:02 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_protection_double_ptr(char **to_check, char *to_free);
 int ft_arraylen(char **split);
 void ft_putstr(char *str);
 void ft_error(char **to_free, char *msg);
-
+//
 int ft_atoi(char *s, char **to_free);
 int *ft_creat_array(char **split, int len);
 void	ft_no_doubles(int *numbers, int len);
