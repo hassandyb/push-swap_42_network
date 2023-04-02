@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/31 18:29:06 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/02 13:15:29 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ char	*ft_substr(char *stock, int begin, int len, char **split);
 char **ft_split(char *stock);
 void ft_free_double_pointer(char **s);
 void	ft_protection_double_ptr(char **to_check, char *to_free);
+int ft_arraylen(char **split);
+void ft_putstr(char *str);
+void ft_error(char **to_free, char *msg);
+
+int ft_atoi(char *s, char **to_free);
+int *ft_creat_array(char **split, int len);
+void	ft_no_doubles(int *numbers, int len);
+void	ft_not_sorted(int *numbers, int len);
+
+t_stack *ft_create_node(int data);
+t_stack	*ft_create_stack_a(int *numbers, int len);
 void ft_push(t_stack **push_from, t_stack **push_to, char *msg);
 
 

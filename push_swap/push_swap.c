@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/03/31 18:37:08 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/02 13:19:41 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,11 +167,27 @@ int ft_arraylen(char **split)
 	return (l);
 }
 
+void ft_putstr(char *str)
+{
+	int i;
+	
+	i = -1;
+	while(str[++i])
+		write(1, &str[i], 1);
+}
+void ft_error(char **to_free, char *msg)
+{
+	ft_putstr(msg);
+	ft_free_double_pointer(to_free);
+	exit(1);
+}
+
+
 int ft_atoi(char *s, char **to_free)
 {
 	int i;
 	int sign;
-	int result;
+	long result;
 	
 	result = 0;
 	sign = 1;
@@ -183,17 +199,16 @@ int ft_atoi(char *s, char **to_free)
 		i++;
 	}
 	if (s[i] == '\0')// in case you have - or + only
-	{
-		write(2 , "Error :\nArg containing - or + only!",36);
-		ft_free_double_pointer(to_free);
-		exit(1);
-	}
+		ft_error(to_free, "Error :\nArg containing - or + only!");
 	while(s[i] >= '0' && s[i] <= '9')
 	{
 		result = (result * 10) + s[i] - '0';
 		i++;
 	}
-	return (result * sign);
+	result = result * sign;
+	if(result < -2147483648 || result > 2147483647)
+		ft_error(to_free, "Error :\nInt coudn't hold a number!");
+	return (result);
 }
 
 int *ft_creat_array(char **split, int len)
@@ -267,9 +282,6 @@ t_stack *ft_create_node(int data)
 	cur->next = NULL;
 	return (cur);
 }
-// 3 8 6 1
-// data = 3;
-// next
 
 t_stack	*ft_create_stack_a(int *numbers, int len)
 {
@@ -291,6 +303,11 @@ t_stack	*ft_create_stack_a(int *numbers, int len)
 	return (begin);
 }
 
+
+
+
+
+//--------  for tests only --------
 void print_stack(t_stack *stack_a)
 {
 	while(stack_a)
@@ -299,7 +316,7 @@ void print_stack(t_stack *stack_a)
 		stack_a = stack_a->next;
 	}
 }
-
+// -------------------------------
 
 int main (int argc, char **argv)
 {
@@ -327,12 +344,14 @@ int main (int argc, char **argv)
 	ft_not_sorted(numbers, len);
 	//-----
 	stack_a = ft_create_stack_a(numbers, len);
+
+	
+	
 	print_stack(stack_a);
-	ft_push(&stack_a, &stack_b, "pb");
-	printf("*********A*****\n");
-	print_stack(stack_a);
-	printf("*********B*****\n");
-	print_stack(stack_b);
+	// ft_push(&stack_a, &stack_b, "pb");
+
+	
+	
 }
 
 // go atoi hander max int nad min int

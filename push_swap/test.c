@@ -1,55 +1,60 @@
 #include "push_swap.h"
 
 
-
-
-
-
-
-
-
-
-typedef struct s_list 
-{
-	int data;
-	struct s_list *next;
-
-}t_list;
-
-
+#include <limits.h>
 
 int main ()
 {
-	t_list *p0 = malloc (sizeof(t_list));
-	t_list *p1 = malloc (sizeof(t_list));
-	t_list *p2 = malloc (sizeof(t_list));
-	t_list *p3 = malloc (sizeof(t_list));
-	t_list *p4 = malloc (sizeof(t_list));
-
-	p0->data = 32;
-	p0->next = p1;
-
-	p1->data = 14;
-	p1->next = p2;
-
-	p2->data = 87;
-	p2->next = p3;
-
-	p3->data = 53;
-	p3->next = p4;
-
-	p4->data = 27;
-	p4->next = NULL;
-
-	t_list *temp = p0;
-	while(temp)
-	{
-		printf("%d  -   ", temp->data);
-		temp = temp->next;
-	}
-
-
+	printf("%d      %d", INT_MIN, INT_MAX);
 }
+
+
+
+
+
+
+
+// typedef struct s_list 
+// {
+// 	int data;
+// 	struct s_list *next;
+
+// }t_list;
+
+
+
+// int main ()
+// {
+// 	t_list *p0 = malloc (sizeof(t_list));
+// 	t_list *p1 = malloc (sizeof(t_list));
+// 	t_list *p2 = malloc (sizeof(t_list));
+// 	t_list *p3 = malloc (sizeof(t_list));
+// 	t_list *p4 = malloc (sizeof(t_list));
+
+// 	p0->data = 32;
+// 	p0->next = p1;
+
+// 	p1->data = 14;
+// 	p1->next = p2;
+
+// 	p2->data = 87;
+// 	p2->next = p3;
+
+// 	p3->data = 53;
+// 	p3->next = p4;
+
+// 	p4->data = 27;
+// 	p4->next = NULL;
+
+// 	t_list *temp = p0;
+// 	while(temp)
+// 	{
+// 		printf("%d  -   ", temp->data);
+// 		temp = temp->next;
+// 	}
+
+
+// }
 
 
 
