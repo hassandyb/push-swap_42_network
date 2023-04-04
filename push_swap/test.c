@@ -11,7 +11,11 @@ int main ()
 
 
 
-
+while(tem)
+{
+	free (tem->data);
+	free 
+}
 
 
 // typedef struct s_list 

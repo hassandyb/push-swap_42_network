@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/02 15:05:31 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:49:33 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,15 +125,7 @@ char	*ft_join_args(char **argv)
 
 //--------------------------
 
-t_stack *ft_create_node(int data)
-{
-	t_stack *cur;
-	
-	cur = malloc(sizeof(t_stack));
-	cur->data = data;
-	cur->next = NULL;
-	return (cur);
-}
+
 
 // t_stack	*ft_create_stack_a(int *numbers, int len)
 // {
@@ -154,17 +146,57 @@ t_stack *ft_create_node(int data)
 // 	}
 // 	return (begin);
 // }
+void	ft_free_linked_list(t_stack *ptr)
+{
+	t_stack *next_node_saver;
+	
+	while(ptr)
+	{
+		ptr->next = next_node_saver;
+		free (ptr);
+		ptr = next_node_saver;
+	}
 
-// t_stack	*ft_create_stack_a(int *numbers, int len)
-// {
-// 	t_stack *begin;
+}
 
-// 	begin = malloc(sizeof(t_stack));
-// 	begin->data = numbers[0];
-// 	begin->next = NULL;
+void ft_linked_list_protection(int *array, t_stack *to_check, t_stack *begin)
+{
+	if(to_check == NULL)
+	{
+		free (array);
+		ft_free_linked_list(begin);
+		exit (1);
+	}
+}
 
-// 	while()
-// }
+t_stack	*ft_create_stack_a(int *numbers, int len)
+{
+	t_stack *old;
+	t_stack *new;
+	t_stack *begin;
+	int i;
+	
+	i = 0;
+	begin = malloc(sizeof(t_stack));
+	ft_linked_list_protection(numbers, begin, begin);
+	begin->data = numbers[i];
+	begin->next = NULL;
+	old = begin;
+	i++;
+	while(i<len)
+	{
+		new = malloc(sizeof(t_stack));
+		ft_linked_list_protection(numbers, new, begin);
+		new->data = numbers[i];
+		new->next = NULL;
+		old->next = new;
+		old = new;
+		i++;
+	}
+	free (numbers);
+	return (begin);
+}
+
 
 
 int main (int argc, char **argv)
@@ -175,6 +207,7 @@ int main (int argc, char **argv)
 	int		len;
 	t_stack *stack_a;
 	t_stack	*stack_b;
+	
 
 	stack_a = NULL;
 	stack_b = NULL;
