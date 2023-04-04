@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/04 14:26:11 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:13:52 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,20 @@ void print_stack(t_stack *stack_a)
 	}
 	printf("\n");
 }
+//-------------------------------
 
-
+void ft_swap(t_stack **ptr, char *msg)
+{
+	t_stack *swap;
+	if(ptr == NULL && *ptr == NULL)
+		return;
+	
+	swap = (*ptr)->next;
+	
+	(*ptr)->next = (*ptr)->next->next;
+	swap->next = (*ptr);
+	(*ptr) = swap;
+}
 
 
 
@@ -214,11 +226,9 @@ int main (int argc, char **argv)
 	ft_not_sorted(numbers, len);
 	//-----
 	stack_a = ft_create_stack_a(numbers, len);
-
-
-	
-	
-
+	//-----
+	// ./a
+	// +-*-./a
 
 	
 	
@@ -254,6 +264,8 @@ int main (int argc, char **argv)
 // stack b :  2
 
 
+
+//you need to handle the case "1+2" and "1 2 9+"
 
 
 
