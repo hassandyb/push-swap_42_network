@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/04 12:49:33 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:26:11 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@
 // spaces : argc - 2;
 // back slash zero :+ 1 ;
 
-//--------  for tests only --------
-void print_stack(t_stack *stack_a)
-{
-	while(stack_a)
-	{
-		printf("%d  ", stack_a->data);
-		stack_a = stack_a->next;
-	}
-	printf("\n");
-}
 
 
 void ft_check(char **argv)
@@ -125,27 +115,6 @@ char	*ft_join_args(char **argv)
 
 //--------------------------
 
-
-
-// t_stack	*ft_create_stack_a(int *numbers, int len)
-// {
-// 	t_stack *node;
-// 	t_stack *begin;
-// 	t_stack *new;
-// 	int i;
-
-// 	i = 0;
-// 	node = ft_create_node(numbers[i++]);
-// 	begin = node;
-// 	while(i < len)
-// 	{
-// 		new = ft_create_node(numbers[i]);
-// 		node->next = new;
-// 		node = new;
-// 		i++;
-// 	}
-// 	return (begin);
-// }
 void	ft_free_linked_list(t_stack *ptr)
 {
 	t_stack *next_node_saver;
@@ -197,6 +166,25 @@ t_stack	*ft_create_stack_a(int *numbers, int len)
 	return (begin);
 }
 
+//--------  for tests only --------
+void print_stack(t_stack *stack_a)
+{
+	if(stack_a == NULL)
+		printf("NUll pointer.\n");
+	while(stack_a)
+	{
+		printf("%d  ", stack_a->data);
+		stack_a = stack_a->next;
+	}
+	printf("\n");
+}
+
+
+
+
+
+
+
 
 
 int main (int argc, char **argv)
@@ -227,12 +215,9 @@ int main (int argc, char **argv)
 	//-----
 	stack_a = ft_create_stack_a(numbers, len);
 
+
 	
 	
-	print_stack(stack_a);
-	// ft_push(&stack_a, &stack_b, "pb");
-	// print_stack(stack_a);
-	// print_stack(stack_b);
 
 
 	
