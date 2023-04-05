@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 12:59:06 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:57:23 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,11 @@ t_stack	*ft_create_stack_a(int *numbers, int len)
 void print_stack(t_stack *stack_a)
 {
 	if(stack_a == NULL)
-		printf("NUll pointer.\n");
+	{
+		printf("NUll\n");
+		return;
+	}
+		
 	while(stack_a)
 	{
 		printf("%d  ", stack_a->data);
@@ -179,33 +183,35 @@ void print_stack(t_stack *stack_a)
 	printf("\n");
 }
 //-------------------------------
-void ft_rotate(t_stack **ptr, char *msg)
+
+
+//you code ft_reverse_rotate again and save the actualy begin and last and increase the ptr so 
+
+void ft_reverse_rotate(t_stack **ptr, char *msg)
 {
 	t_stack *begin;
+	t_stack *befor_last;
 	t_stack *temp;
-	if(ptr == NULL || *ptr == NULL)
+	
+	if(*ptr == NULL || (*ptr)->next == NULL)
 		return ;
-	begin = (*ptr)->next;
-	temp = (*ptr);
-	begin = (*ptr);
-	if(begin == NULL)
-		return ;
-	begin = (*ptr)->next;
-	while(temp)
+	begin = *ptr;
+	while(ptr)
 	{
-		if(temp->next == NULL)
+		if((*ptr)->next->next == NULL)
+		{
+			befor_last = (*ptr);
 			break ;
-		else
-			temp = temp->next;
+		}
+		(*ptr) = (*ptr)->next;
 	}
-	temp->next = *ptr;
-	(*ptr)->next = NULL;
-	(*ptr) = begin;
+	(*ptr) = (*ptr)->next;
+
+	(*ptr)->next = begin;
+	befor_last->next = NULL;
 	ft_putstr(msg);
-	printf("\n"); //delete later
+	
 }
-
-
 
 
 
@@ -240,13 +246,14 @@ int main (int argc, char **argv)
 	//-----
 	stack_a = ft_create_stack_a(numbers, len);
 	//-----
-	// printf()
-	ft_push(NULL, &stack_b, "pb");
-	ft_push(&stack_a, &stack_b, "pb");
-	
+
+
+	ft_push(&stack_a, &stack_b, "pb\n");
+	ft_push(&stack_a, &stack_b, "pb\n");
 	print_stack(stack_b);
-	ft_rotate(&stack_b, "--");
+	ft_reverse_rotate(&stack_b, "rra\n");
 	print_stack(stack_b);
+
 
 }
 

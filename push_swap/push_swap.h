@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/04 15:02:14 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:22:39 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void ft_linked_list_protection(int *array, t_stack *to_check, t_stack *begin);
 t_stack	*ft_create_stack_a(int *numbers, int len);
 
 void ft_push(t_stack **src, t_stack **dst, char *msg);
+void ft_rotate(t_stack **ptr, char *msg);
+void ft_swap(t_stack **ptr, char *msg);
+
+
 
 
 #endif
