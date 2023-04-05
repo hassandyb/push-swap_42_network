@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:23:08 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/02 14:24:01 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:29:32 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_not_sorted(int *numbers, int len)
 			return;
 		i++;
 	}
-	write(2, "Error :\nArgs are already sorted!",33);
+	write(2, "Error :\nNumbers are already sorted - or one number !",53);
 	free(numbers);
 	exit (1);
 }

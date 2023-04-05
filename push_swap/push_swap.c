@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 17:18:32 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 18:39:51 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 
 
-void ft_check(char **argv)
+void ft_check1(char **argv)
 {
 	int y;
 	int x;
@@ -85,6 +85,12 @@ void ft_check3(char **argv)
 				write(1, "Error :\nYou have -- ++ -+ or +-!", 33);
 				exit (0);
 			}
+			if((argv[y][x] >= '0' && argv[y][x] <= '9') && (argv[y][x+1] == '+' || argv[y][x+1] == '-'))
+			{
+				write(1, "Error :\nYou have + or - directly after a number!", 49);
+				exit (0);
+			}
+
 			x++;
 		}
 		y++;
@@ -186,43 +192,22 @@ void print_stack(t_stack *list)
 
 void print_array(int *array, int len)
 {
+	int i = 0;
 	if(len == 0)
-		printf("len equal to zero!")
+		printf("len equal to zero!");
 	while(i < len)
 	{
-		printf("%d  ", len);
+		printf("%d  ", array[i]);
+		i++;
 	}
+	printf("\n");
 }
 //-------------------------------
 
 
 //you code ft_reverse_rotate again and save the actualy begin and last and increase the ptr so 
 
-void ft_reverse_rotate(t_stack **ptr, char *msg)
-{
-	t_stack *begin;
-	t_stack *befor_last;
-	t_stack *temp;
-	
-	if(*ptr == NULL || (*ptr)->next == NULL)
-		return ;
-	begin = *ptr;
-	while(ptr)
-	{
-		if((*ptr)->next->next == NULL)
-		{
-			befor_last = (*ptr);
-			break ;
-		}
-		(*ptr) = (*ptr)->next;
-	}
-	(*ptr) = (*ptr)->next;
 
-	(*ptr)->next = begin;
-	befor_last->next = NULL;
-	ft_putstr(msg);
-	
-}
 
 
 
@@ -243,7 +228,7 @@ int main (int argc, char **argv)
 	stack_b = NULL;
 	if(argc == 1)
 		exit (0);
-	ft_check(argv);
+	ft_check1(argv);
 	ft_check2(argv);
 	ft_check3(argv);
 	stock = ft_join_args(argv);
@@ -252,18 +237,18 @@ int main (int argc, char **argv)
 	//----
 	len = ft_arraylen(split);
 	numbers = ft_creat_array(split, len);
+	print_array(numbers, len);
 	ft_no_doubles(numbers, len);
 	ft_not_sorted(numbers, len);
 	//-----
-	stack_a = ft_create_stack_a(numbers, len);
+	// stack_a = ft_create_stack_a(numbers, len);
 	//-----
 
-
-	ft_push(&stack_a, &stack_b, "pb\n");
-	ft_push(&stack_a, &stack_b, "pb\n");
-	print_stack(stack_b);
-	ft_reverse_rotate(&stack_b, "rra\n");
-	print_stack(stack_b);
+	// ft_push(&stack_a, &stack_b, "pb\n");
+	// ft_push(&stack_a, &stack_b, "pb\n");
+	// print_stack(stack_b);
+	// ft_reverse_rotate(&stack_b, "rra\n");
+	// print_stack(stack_b);
 
 
 }
@@ -299,7 +284,7 @@ int main (int argc, char **argv)
 
 
 
-//you need to handle the case "1+2" and "1 2 9+"
+//you need to handle the case "1+2" and "1 2 9+" 
 
 
 

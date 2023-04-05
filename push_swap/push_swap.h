@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 17:06:58 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 18:38:07 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ typedef struct s_stack
 	struct s_stack *next;
 } t_stack;
 
-void ft_check(char **argv);
+void ft_check1(char **argv);
 void	ft_check2(char **argv);
+void ft_check3(char **argv);
 int	ft_strlen(char *s);
 void ft_protection(char *to_check, char *to_free);
 char	*ft_strjoin(char *stock, char *arg);
 char	*ft_join_args(char **argv);
+
 int	ft_count(char *stock);
 char	*ft_substr(char *stock, int begin, int len, char **split);
 char **ft_split(char *stock);
@@ -52,7 +54,7 @@ t_stack	*ft_create_stack_a(int *numbers, int len);
 void ft_push(t_stack **src, t_stack **dst, char *msg);
 void ft_rotate(t_stack **ptr, char *msg);
 void ft_swap(t_stack **ptr, char *msg);
-
+void ft_reverse_rotate(t_stack **ptr, char *msg);
 
 
 

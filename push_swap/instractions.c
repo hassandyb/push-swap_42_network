@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:01:43 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 15:04:44 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:34:52 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,30 @@ void ft_rotate(t_stack **ptr, char *msg)
 	(*ptr) = begin;
 	ft_putstr(msg);
 
+}
+
+void ft_reverse_rotate(t_stack **ptr, char *msg)
+{
+	t_stack *begin;
+	t_stack *befor_last;
+	t_stack *temp;
+	
+	if(*ptr == NULL || (*ptr)->next == NULL)
+		return ;
+	begin = *ptr;
+	while(ptr)
+	{
+		if((*ptr)->next->next == NULL)
+		{
+			befor_last = (*ptr);
+			break ;
+		}
+		(*ptr) = (*ptr)->next;
+	}
+	(*ptr) = (*ptr)->next;
+
+	(*ptr)->next = begin;
+	befor_last->next = NULL;
+	ft_putstr(msg);
+	
 }
