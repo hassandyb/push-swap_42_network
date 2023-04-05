@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 13:22:39 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:06:58 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <string.h>
 typedef struct s_stack
 {
+	int rank;
 	int data;
 	struct s_stack *next;
 } t_stack;

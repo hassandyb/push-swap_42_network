@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 16:57:23 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:18:32 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,14 +148,15 @@ t_stack	*ft_create_stack_a(int *numbers, int len)
 	i = 0;
 	begin = malloc(sizeof(t_stack));
 	ft_linked_list_protection(numbers, begin, begin);
-	begin->data = numbers[i];
+	begin->rank = -1;
+	begin->data = numbers[i++];
 	begin->next = NULL;
 	old = begin;
-	i++;
 	while(i<len)
 	{
 		new = malloc(sizeof(t_stack));
 		ft_linked_list_protection(numbers, new, begin);
+		new->rank = -1;
 		new->data = numbers[i];
 		new->next = NULL;
 		old->next = new;
@@ -167,20 +168,30 @@ t_stack	*ft_create_stack_a(int *numbers, int len)
 }
 
 //--------  for tests only --------
-void print_stack(t_stack *stack_a)
+void print_stack(t_stack *list)
 {
-	if(stack_a == NULL)
+	if(list == NULL)
 	{
 		printf("NUll\n");
 		return;
 	}
 		
-	while(stack_a)
+	while(list)
 	{
-		printf("%d  ", stack_a->data);
-		stack_a = stack_a->next;
+		printf("%d  ", list->data);
+		list = list->next;
 	}
 	printf("\n");
+}
+
+void print_array(int *array, int len)
+{
+	if(len == 0)
+		printf("len equal to zero!")
+	while(i < len)
+	{
+		printf("%d  ", len);
+	}
 }
 //-------------------------------
 
