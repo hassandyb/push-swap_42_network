@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:01:43 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/04 16:13:12 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:58:55 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void ft_push(t_stack **src, t_stack **dst, char *msg)
 {
-	if(*src == NULL)
+	if(src == NULL || *src == NULL)
 		return;
 	t_stack *new_src;
 	
@@ -25,21 +25,21 @@ void ft_push(t_stack **src, t_stack **dst, char *msg)
 	*dst = *src;
 	*src = new_src;
 	ft_putstr(msg);
+	printf("\n"); //delete it later
 }
 
-void sa(t_stack *a)
+void ft_swap(t_stack **ptr, char *msg)
 {
-	int tmp;
-	tmp = a->data;
-	a->data = a->next->data;
-	a->next->data = tmp;
-}
-
-void ra(t_stack **a)
-{
+	t_stack *swap;
 	
+	if(ptr == NULL && *ptr == NULL)
+		return;
+	swap = (*ptr)->next;
+	if(swap == NULL)
+		return ;
+	(*ptr)->next = (*ptr)->next->next;
+	swap->next = (*ptr);
+	(*ptr) = swap;
+	ft_putstr(msg);
+	printf("\n"); //delete it later
 }
-// void sa(t_stck **a)
-// {
-// 	tmp *
-// }

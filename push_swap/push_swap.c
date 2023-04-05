@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/04 16:13:52 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:59:06 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,19 +179,32 @@ void print_stack(t_stack *stack_a)
 	printf("\n");
 }
 //-------------------------------
-
-void ft_swap(t_stack **ptr, char *msg)
+void ft_rotate(t_stack **ptr, char *msg)
 {
-	t_stack *swap;
-	if(ptr == NULL && *ptr == NULL)
-		return;
-	
-	swap = (*ptr)->next;
-	
-	(*ptr)->next = (*ptr)->next->next;
-	swap->next = (*ptr);
-	(*ptr) = swap;
+	t_stack *begin;
+	t_stack *temp;
+	if(ptr == NULL || *ptr == NULL)
+		return ;
+	begin = (*ptr)->next;
+	temp = (*ptr);
+	begin = (*ptr);
+	if(begin == NULL)
+		return ;
+	begin = (*ptr)->next;
+	while(temp)
+	{
+		if(temp->next == NULL)
+			break ;
+		else
+			temp = temp->next;
+	}
+	temp->next = *ptr;
+	(*ptr)->next = NULL;
+	(*ptr) = begin;
+	ft_putstr(msg);
+	printf("\n"); //delete later
 }
+
 
 
 
@@ -227,11 +240,14 @@ int main (int argc, char **argv)
 	//-----
 	stack_a = ft_create_stack_a(numbers, len);
 	//-----
-	// ./a
-	// +-*-./a
+	// printf()
+	ft_push(NULL, &stack_b, "pb");
+	ft_push(&stack_a, &stack_b, "pb");
+	
+	print_stack(stack_b);
+	ft_rotate(&stack_b, "--");
+	print_stack(stack_b);
 
-	
-	
 }
 
 // sa = swap stack a = swap tow first data;   =>  3 8 4 6 =>   8 3  4 6
