@@ -98,3 +98,13 @@ while(tem)
 // 		tmp = tmp-> next;
 // 	}
 // }
+
+
+
+
+
+
+int main ()
+{
+	ft_function()
+}

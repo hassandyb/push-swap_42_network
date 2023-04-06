@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 18:39:51 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/06 11:49:14 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ t_stack	*ft_create_stack_a(int *numbers, int len)
 		old = new;
 		i++;
 	}
-	free (numbers);
 	return (begin);
 }
 
@@ -203,10 +202,45 @@ void print_array(int *array, int len)
 	printf("\n");
 }
 //-------------------------------
+void ft_sort_array(int *numbers, int len)
+{
+	int i;
+	int swap;
+	i = 0;
+	while(i<len - 1)
+	{
+		if(numbers[i] > numbers[i+1])
+		{
+			swap = numbers[i];
+			numbers[i] = numbers[i+1];
+			numbers[i+1] = swap;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
 
-
-//you code ft_reverse_rotate again and save the actualy begin and last and increase the ptr so 
-
+void ft_add_rank(t_stack *ptr, int *numbers, int len)
+{
+	int j;
+	int i;
+	j = 0;
+	while(ptr)
+	{
+		i = 0;
+		while(i < len)
+		{
+			if(ptr->data = numbers[i])
+			{
+				ptr->rank = i;
+				break ;
+			}
+			i++;
+		}
+		ptr = ptr->next;
+	}
+}
 
 
 
@@ -237,13 +271,19 @@ int main (int argc, char **argv)
 	//----
 	len = ft_arraylen(split);
 	numbers = ft_creat_array(split, len);
-	print_array(numbers, len);
 	ft_no_doubles(numbers, len);
 	ft_not_sorted(numbers, len);
 	//-----
-	// stack_a = ft_create_stack_a(numbers, len);
-	//-----
+	stack_a = ft_create_stack_a(numbers, len);
+	
 
+	ft_sort_array(numbers, len);
+	ft_add_rank(&stack_a, numbers, len);// add and remove & and see what happsns.
+	//-----
+	// print_stack(stack_a);
+
+
+	
 	// ft_push(&stack_a, &stack_b, "pb\n");
 	// ft_push(&stack_a, &stack_b, "pb\n");
 	// print_stack(stack_b);
