@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/06 11:49:14 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:49:51 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,23 @@ void print_stack(t_stack *list)
 		
 	while(list)
 	{
-		printf("%d  ", list->data);
+		printf("%d      ", list->data);
+		list = list->next;
+	}
+	printf("\n");
+}
+
+void print_stack_(t_stack *list)
+{
+	if(list == NULL)
+	{
+		printf("NUll\n");
+		return;
+	}
+		
+	while(list)
+	{
+		printf("%d->%d      ", list->data, list->rank);
 		list = list->next;
 	}
 	printf("\n");
@@ -231,7 +247,7 @@ void ft_add_rank(t_stack *ptr, int *numbers, int len)
 		i = 0;
 		while(i < len)
 		{
-			if(ptr->data = numbers[i])
+			if(ptr->data == numbers[i])
 			{
 				ptr->rank = i;
 				break ;
@@ -240,12 +256,34 @@ void ft_add_rank(t_stack *ptr, int *numbers, int len)
 		}
 		ptr = ptr->next;
 	}
+	free(numbers);
 }
-
-
-
-
-
+// -------------------------------
+void ft_len_div_5(t_stack **src, t_stack **dst,int len)
+{
+	int max = len/5;
+	int count;
+	count = 0;
+	while(*src != NULL)
+	{
+		while( *src != NULL && count < len/5)
+		{
+			
+			printf("--------\n");
+			if((*src)->rank < max)
+			{
+				ft_push(src, dst, "pb\n");
+				count++;
+			}
+			else
+				ft_rotate(src, "ra\n");
+		}
+		count = 0;
+		max = max + (len/5);
+		print_stack(*src);
+		print_stack(*dst);
+	}
+}
 
 
 int main (int argc, char **argv)
@@ -275,30 +313,48 @@ int main (int argc, char **argv)
 	ft_not_sorted(numbers, len);
 	//-----
 	stack_a = ft_create_stack_a(numbers, len);
-	
-
 	ft_sort_array(numbers, len);
-	ft_add_rank(&stack_a, numbers, len);// add and remove & and see what happsns.
-	//-----
-	// print_stack(stack_a);
+	ft_add_rank(stack_a, numbers, len);// add and remove & and see what happsns.
+	//----
 
+
+	// print_stack(stack_a);
+	// print_stack(stack_b);
+	ft_len_div_5(&stack_a, &stack_b, len);
+	// print_stack(stack_a);
+	// print_stack(stack_b);
 
 	
-	// ft_push(&stack_a, &stack_b, "pb\n");
-	// ft_push(&stack_a, &stack_b, "pb\n");
+	// ft_first_lendiv5(&stack_a, &stack_b, len);
+	// print_stack(stack_a);
 	// print_stack(stack_b);
-	// ft_reverse_rotate(&stack_b, "rra\n");
-	// print_stack(stack_b);
-
-
+	//-----
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // sa = swap stack a = swap tow first data;   =>  3 8 4 6 =>   8 3  4 6
 // same for sb;
 
 
 // ra and rb  rotate
-// make the first data begin the last but be curfeu to the order  2 4 6 7 => 4 6 7 2
+// make the first become the last  2 4 6 7 => 4 6 7 2
 
 // rra rrb  reverce rotate
 //  make the last becom etne first             2 4 6 7 => 7 2 4 6
