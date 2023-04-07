@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/07 21:07:09 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/07 21:58:27 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,24 +259,24 @@ void ft_add_rank(t_stack *ptr, int *numbers, int len)
 	free(numbers);
 }
 // -------------------------------
-void ft_sort(t_stack **src, t_stack **dst,int len)
+void ft_sort(t_stack **a, t_stack **b,int len)
 {
 	int max = len/5;
 	int count;
 	count = 0;
-	while(*src != NULL)
+	while(*a != NULL)
 	{
-		while( *src != NULL && count < len/5)
+		while( *a != NULL && count < len/5)
 		{
-			if((*src)->rank < max)
+			if((*a)->rank < max)
 			{
-				ft_push(src, dst, "pb\n");
-				if((*dst)->rank >= max - (len/10))
-					ft_rotate(dst, "rb\n");
+				ft_push(a, b, "pb\n");
+				if((*b)->rank >= max - (len/10))
+					ft_rotate(b, "rb\n");
 				count++;
 			}
 			else
-				ft_rotate(src, "ra\n");
+				ft_rotate(a, "ra\n");
 		}
 		count = 0;
 		max = max + (len/5);
@@ -300,9 +300,28 @@ int ft_maxnumber_indice(t_stack *list, int len)
 	return (i);
 }
 
-void ft_sort_2(t_stack **src, t_stack **dst,int len)
+void ft_sort_2(t_stack **b, t_stack **a,int len, int indice)
 {
+	t_stack *temp;
+	if(indice < len / 2)// the max is in the begining
+	{
+		while(*b)
+		{
+			if((*b)->rank = len - 1)
+			{
+				ft_push(b, a, "pa\n");
+				break ;
+			}	
+			else
+				ft_rotate(b, "rb\n");
+		}
+	}
 	
+	while()
+	else //the mas is in the last;
+	{
+		
+	}
 }
 
 int main (int argc, char **argv)
@@ -313,6 +332,7 @@ int main (int argc, char **argv)
 	int		len;
 	t_stack *stack_a;
 	t_stack	*stack_b;
+	int indice;
 	
 
 	stack_a = NULL;
@@ -342,8 +362,8 @@ int main (int argc, char **argv)
 	ft_sort(&stack_a, &stack_b, len);
 	print_stack(stack_a);
 	print_stack(stack_b);
-	int indice = ft_maxnumber_indice(stack_b, len);
-	printf("indice = %d\n", indice);
+	indice = ft_maxnumber_indice(stack_b, len);
+	ft_sort_2(&stack_a, &stack_b, len, indice);
 
 	//-----
 	
