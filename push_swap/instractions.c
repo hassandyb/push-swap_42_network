@@ -6,24 +6,26 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:01:43 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/07 15:04:42 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:58:54 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
+
+
 void ft_push(t_stack **src, t_stack **dst, char *msg)
 {
+	t_stack *src_begin;
 	if(*src == NULL || src == NULL)
 		return;
-	t_stack *new_src;
-	
-	new_src = (*src)->next;
 
-	(*src)->next = *dst;
-	*dst = *src;
-	*src = new_src;
+	src_begin = *src;
+
+	*src = (*src)->next;
+	src_begin->next = *dst;
+	*dst = src_begin;
 	// ft_putstr(msg);
 }
 
