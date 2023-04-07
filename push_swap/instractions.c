@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:01:43 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/07 15:58:54 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/07 21:03:22 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void ft_push(t_stack **src, t_stack **dst, char *msg)
 	*src = (*src)->next;
 	src_begin->next = *dst;
 	*dst = src_begin;
-	// ft_putstr(msg);
+	ft_putstr(msg);
 }
 
 void ft_swap(t_stack **ptr, char *msg)//swap tow first elemnt in the linked list
@@ -40,7 +40,7 @@ void ft_swap(t_stack **ptr, char *msg)//swap tow first elemnt in the linked list
 	(*ptr)->next = (*ptr)->next->next;
 	swap->next = (*ptr);
 	(*ptr) = swap;
-	// ft_putstr(msg);
+	ft_putstr(msg);
 }
 
 void ft_rotate(t_stack **ptr, char *msg)// make the first become the last
@@ -61,7 +61,7 @@ void ft_rotate(t_stack **ptr, char *msg)// make the first become the last
 	temp->next = *ptr;
 	(*ptr)->next = NULL;
 	(*ptr) = begin;
-	// ft_putstr(msg);
+	ft_putstr(msg);
 
 }
 
@@ -87,6 +87,6 @@ void ft_reverse_rotate(t_stack **ptr, char *msg)// make the last become the firs
 
 	(*ptr)->next = begin;
 	befor_last->next = NULL;
-	// ft_putstr(msg);
+	ft_putstr(msg);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/07 15:49:51 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/07 21:07:09 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ void ft_add_rank(t_stack *ptr, int *numbers, int len)
 	free(numbers);
 }
 // -------------------------------
-void ft_len_div_5(t_stack **src, t_stack **dst,int len)
+void ft_sort(t_stack **src, t_stack **dst,int len)
 {
 	int max = len/5;
 	int count;
@@ -268,11 +268,11 @@ void ft_len_div_5(t_stack **src, t_stack **dst,int len)
 	{
 		while( *src != NULL && count < len/5)
 		{
-			
-			printf("--------\n");
 			if((*src)->rank < max)
 			{
 				ft_push(src, dst, "pb\n");
+				if((*dst)->rank >= max - (len/10))
+					ft_rotate(dst, "rb\n");
 				count++;
 			}
 			else
@@ -280,11 +280,30 @@ void ft_len_div_5(t_stack **src, t_stack **dst,int len)
 		}
 		count = 0;
 		max = max + (len/5);
-		print_stack(*src);
-		print_stack(*dst);
 	}
 }
+//create a function  which return the position 
+int ft_maxnumber_indice(t_stack *list, int len)
+{
+	int i;
 
+	i = 0;
+	while(list)
+	{
+		if(list->rank == len - 1)
+		{
+			return (i);
+		}
+		list = list->next;
+		i++;
+	}
+	return (i);
+}
+
+void ft_sort_2(t_stack **src, t_stack **dst,int len)
+{
+	
+}
 
 int main (int argc, char **argv)
 {
@@ -318,29 +337,17 @@ int main (int argc, char **argv)
 	//----
 
 
-	// print_stack(stack_a);
-	// print_stack(stack_b);
-	ft_len_div_5(&stack_a, &stack_b, len);
-	// print_stack(stack_a);
-	// print_stack(stack_b);
+	print_stack(stack_a);
+	print_stack(stack_b);
+	ft_sort(&stack_a, &stack_b, len);
+	print_stack(stack_a);
+	print_stack(stack_b);
+	int indice = ft_maxnumber_indice(stack_b, len);
+	printf("indice = %d\n", indice);
 
-	
-	// ft_first_lendiv5(&stack_a, &stack_b, len);
-	// print_stack(stack_a);
-	// print_stack(stack_b);
 	//-----
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -384,3 +391,7 @@ int main (int argc, char **argv)
 
 
 
+
+ 
+
+ 
