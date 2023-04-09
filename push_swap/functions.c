@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:19:20 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/02 14:22:13 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/09 22:17:48 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void ft_putstr(char *str)
 {
 	int i;
 	
+	if (str == NULL)
+		return ;
 	i = -1;
 	while(str[++i])
 		write(1, &str[i], 1);

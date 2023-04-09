@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/09 22:07:06 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/09 22:34:27 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,29 +265,32 @@ void ft_sort(t_stack **a, t_stack **b,int len)
 	int chunk;
 	int count;
 	int indice;
-	
 	if(len >= 6 && len <= 100)
-		chunk = len / 10;
+		chunk = len / 5;
 	else
 		chunk = len / 11;
-	count = 0;
+
 	indice = 1;
+	
+	printf("%d\n", chunk);
 	while(*a != NULL)
 	{
+		count = 0;
 		while( *a != NULL && count < chunk)
 		{
+			
 			if((*a)->rank < (chunk * indice))//we try to ing the numbers of our chunk
 			{
-				count++;
 				ft_push(a, b, "pb\n");
-				if((*b)->rank >= (chunk * indice) - ((chunk * indice) / 2))// we split the chunk numbers big at end small at the beginig - while to get the chank numbers we split them ==>big numbers -->rorate ->we to the end | and we keep small numbers in the beging of our linkedlist
+				if((*b)->rank >= (chunk * indice) - (chunk  / 2))// we split the chunk numbers big at end small at the beginig - while to get the chank numbers we split them ==>big numbers -->rorate ->we to the end | and we keep small numbers in the beging of our linkedlist
 					ft_rotate(b, "rb\n");
+				count++;
 			}
 			else
 				ft_rotate(a, "ra\n");
 		}
-		count = 0;
-		chunk = chunk + (len/5);
+		indice++;
+		// chunk = chunk * indice;
 	}
 }
 //create a function  which return the position 
@@ -314,32 +317,7 @@ void ft_sort_2(t_stack **b, t_stack **a,int len, int indice)
 	
 	while(*b)
 	{
-		// if(indice < len / 2)// the max is in the begining
-		// {
-		// 	while(*b)
-		// 	{
-		// 		if((*b)->rank == len - 1)
-		// 		{
-		// 			ft_push(b, a, "pa\n");
-		// 			break ;
-		// 		}
-		// 		ft_rotate(b, "rb\n");
-		// 	}
-		// }
-		
-		// else //the mas is in the last;
-		// {
-		// 	while(*b)
-		// 	{
-		// 		ft_reverse_rotate(b, "rrb");
-		// 		if((*b)->rank == len - 1)
-		// 		{
-		// 			ft_push(b, a, "pb\n");
-		// 			break ;
-		// 		}
-				
-		// 	}
-		// }
+
 		if((*b)->rank == len - 1)
 		{
 			ft_push(b, a, "pa\n");
@@ -386,9 +364,15 @@ int main (int argc, char **argv)
 	ft_add_rank(stack_a, numbers, len);// add and remove & and see what happsns.
 	//----
 
+	print_stack(stack_a);
+	print_stack(stack_b);
+	
 	ft_sort(&stack_a, &stack_b, len);
-	indice = ft_maxnumber_indice(stack_b, len);
-	ft_sort_2(&stack_b, &stack_a, len, indice);
+	print_stack(stack_a);
+	print_stack(stack_b);
+	// indice = ft_maxnumber_indice(stack_b, len);
+	
+	// ft_sort_2(&stack_b, &stack_a, len, indice);
 
 	//-----
 	
