@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/07 21:58:27 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/09 22:07:06 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,25 +261,33 @@ void ft_add_rank(t_stack *ptr, int *numbers, int len)
 // -------------------------------
 void ft_sort(t_stack **a, t_stack **b,int len)
 {
-	int max = len/5;
+	// int max = len/5;
+	int chunk;
 	int count;
+	int indice;
+	
+	if(len >= 6 && len <= 100)
+		chunk = len / 10;
+	else
+		chunk = len / 11;
 	count = 0;
+	indice = 1;
 	while(*a != NULL)
 	{
-		while( *a != NULL && count < len/5)
+		while( *a != NULL && count < chunk)
 		{
-			if((*a)->rank < max)
+			if((*a)->rank < (chunk * indice))//we try to ing the numbers of our chunk
 			{
-				ft_push(a, b, "pb\n");
-				if((*b)->rank >= max - (len/10))
-					ft_rotate(b, "rb\n");
 				count++;
+				ft_push(a, b, "pb\n");
+				if((*b)->rank >= (chunk * indice) - ((chunk * indice) / 2))// we split the chunk numbers big at end small at the beginig - while to get the chank numbers we split them ==>big numbers -->rorate ->we to the end | and we keep small numbers in the beging of our linkedlist
+					ft_rotate(b, "rb\n");
 			}
 			else
 				ft_rotate(a, "ra\n");
 		}
 		count = 0;
-		max = max + (len/5);
+		chunk = chunk + (len/5);
 	}
 }
 //create a function  which return the position 
@@ -303,23 +311,45 @@ int ft_maxnumber_indice(t_stack *list, int len)
 void ft_sort_2(t_stack **b, t_stack **a,int len, int indice)
 {
 	t_stack *temp;
-	if(indice < len / 2)// the max is in the begining
-	{
-		while(*b)
-		{
-			if((*b)->rank = len - 1)
-			{
-				ft_push(b, a, "pa\n");
-				break ;
-			}	
-			else
-				ft_rotate(b, "rb\n");
-		}
-	}
 	
-	while()
-	else //the mas is in the last;
+	while(*b)
 	{
+		// if(indice < len / 2)// the max is in the begining
+		// {
+		// 	while(*b)
+		// 	{
+		// 		if((*b)->rank == len - 1)
+		// 		{
+		// 			ft_push(b, a, "pa\n");
+		// 			break ;
+		// 		}
+		// 		ft_rotate(b, "rb\n");
+		// 	}
+		// }
+		
+		// else //the mas is in the last;
+		// {
+		// 	while(*b)
+		// 	{
+		// 		ft_reverse_rotate(b, "rrb");
+		// 		if((*b)->rank == len - 1)
+		// 		{
+		// 			ft_push(b, a, "pb\n");
+		// 			break ;
+		// 		}
+				
+		// 	}
+		// }
+		if((*b)->rank == len - 1)
+		{
+			ft_push(b, a, "pa\n");
+			len--;
+			indice = ft_maxnumber_indice(*b, len);
+		}
+		else if(indice < len /2)
+			ft_rotate(b, "rb\n");
+		else  if(indice >= len /2)
+			ft_reverse_rotate(b, "rrb\n");
 		
 	}
 }
@@ -356,19 +386,13 @@ int main (int argc, char **argv)
 	ft_add_rank(stack_a, numbers, len);// add and remove & and see what happsns.
 	//----
 
-
-	print_stack(stack_a);
-	print_stack(stack_b);
 	ft_sort(&stack_a, &stack_b, len);
-	print_stack(stack_a);
-	print_stack(stack_b);
 	indice = ft_maxnumber_indice(stack_b, len);
-	ft_sort_2(&stack_a, &stack_b, len, indice);
+	ft_sort_2(&stack_b, &stack_a, len, indice);
 
 	//-----
 	
 }
-
 
 
 
@@ -412,6 +436,12 @@ int main (int argc, char **argv)
 
 
 
- 
 
- 
+/* check count
+	6 ---> 100 size /5
+	101 ---> size /11
+*/
+// not chunks / hard coding
+// sort 3 numbers
+// sort 4/5 numbers
+ //./a.out  $(seq 200 -200 | sort -R | head -n100) | wc -l  
