@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/09 22:34:27 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/10 17:51:53 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,6 +331,55 @@ void ft_sort_2(t_stack **b, t_stack **a,int len, int indice)
 		
 	}
 }
+//---------
+// n1  n2 n3
+// i1  i2 i3
+void	sort_3_numbers(t_stack **a, t_stack **b)
+{
+	if((*a)->rank == 2)//the begist numver in the begining
+	{
+		ft_rotate(a, "ra\n");//move it to the end 
+		if((*a)->rank == 1)
+			ft_swap(a, "sa\n");
+		return ;
+	}
+	if((*a)->rank == 1)//the middle number in the beging
+	{
+		ft_swap(a, "sa\n");
+		if((*a)->rank == 2)
+		{
+			ft_rotate(a, "ra\n");
+			ft_swap(a, "sa\n");
+		}
+		return ;
+	}
+	else//the small number is in the begiging
+	{
+		ft_rotate(a, "ra\n");
+		ft_swap(a, "sa\n");
+		ft_reverse_rotate(a, "rra\n");
+		return ;
+	}
+}
+
+void	ft_less_than_five(t_stack **a, t_stack **b, int len)
+{
+	if(len == 2)
+		ft_swap(a, "sa\n");
+	else if (len == 3)
+		sort_3_numbers(a, b);
+	// else if (len == 4)
+	// {
+	// 	while(*a)
+	// 	{
+	// 		if((*a)->rank)
+	// 		ft_rotate(a, "ra\n");
+	// 	}
+	// }
+	// else if (len == 5)
+	// 	sort_5_numbers(a, b);
+	return ;
+}
 
 int main (int argc, char **argv)
 {
@@ -363,16 +412,28 @@ int main (int argc, char **argv)
 	ft_sort_array(numbers, len);
 	ft_add_rank(stack_a, numbers, len);// add and remove & and see what happsns.
 	//----
-
-	print_stack(stack_a);
-	print_stack(stack_b);
 	
-	ft_sort(&stack_a, &stack_b, len);
 	print_stack(stack_a);
-	print_stack(stack_b);
+
+	if(len <= 5)
+	{
+		ft_less_than_five(&stack_a, &stack_b, len);
+		// exit (0);  the program must exit after this function
+	}
+	print_stack(stack_a);
+
+
+
+
+		
+	// ft_sort(&stack_a, &stack_b, len);
 	// indice = ft_maxnumber_indice(stack_b, len);
 	
+	// print_stack(stack_a);
+	// print_stack(stack_b);
 	// ft_sort_2(&stack_b, &stack_a, len, indice);
+	// print_stack(stack_a);
+	// print_stack(stack_b);
 
 	//-----
 	
@@ -426,6 +487,7 @@ int main (int argc, char **argv)
 	101 ---> size /11
 */
 // not chunks / hard coding
-// sort 3 numbers
+// sort 3  numbers
+// sort 2 numbers
 // sort 4/5 numbers
  //./a.out  $(seq 200 -200 | sort -R | head -n100) | wc -l  
