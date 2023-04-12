@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/10 17:51:53 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/12 16:37:25 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,168 +218,7 @@ void print_array(int *array, int len)
 	printf("\n");
 }
 //-------------------------------
-void ft_sort_array(int *numbers, int len)
-{
-	int i;
-	int swap;
-	i = 0;
-	while(i<len - 1)
-	{
-		if(numbers[i] > numbers[i+1])
-		{
-			swap = numbers[i];
-			numbers[i] = numbers[i+1];
-			numbers[i+1] = swap;
-			i = 0;
-		}
-		else
-			i++;
-	}
-}
 
-void ft_add_rank(t_stack *ptr, int *numbers, int len)
-{
-	int j;
-	int i;
-	j = 0;
-	while(ptr)
-	{
-		i = 0;
-		while(i < len)
-		{
-			if(ptr->data == numbers[i])
-			{
-				ptr->rank = i;
-				break ;
-			}
-			i++;
-		}
-		ptr = ptr->next;
-	}
-	free(numbers);
-}
-// -------------------------------
-void ft_sort(t_stack **a, t_stack **b,int len)
-{
-	// int max = len/5;
-	int chunk;
-	int count;
-	int indice;
-	if(len >= 6 && len <= 100)
-		chunk = len / 5;
-	else
-		chunk = len / 11;
-
-	indice = 1;
-	
-	printf("%d\n", chunk);
-	while(*a != NULL)
-	{
-		count = 0;
-		while( *a != NULL && count < chunk)
-		{
-			
-			if((*a)->rank < (chunk * indice))//we try to ing the numbers of our chunk
-			{
-				ft_push(a, b, "pb\n");
-				if((*b)->rank >= (chunk * indice) - (chunk  / 2))// we split the chunk numbers big at end small at the beginig - while to get the chank numbers we split them ==>big numbers -->rorate ->we to the end | and we keep small numbers in the beging of our linkedlist
-					ft_rotate(b, "rb\n");
-				count++;
-			}
-			else
-				ft_rotate(a, "ra\n");
-		}
-		indice++;
-		// chunk = chunk * indice;
-	}
-}
-//create a function  which return the position 
-int ft_maxnumber_indice(t_stack *list, int len)
-{
-	int i;
-
-	i = 0;
-	while(list)
-	{
-		if(list->rank == len - 1)
-		{
-			return (i);
-		}
-		list = list->next;
-		i++;
-	}
-	return (i);
-}
-
-void ft_sort_2(t_stack **b, t_stack **a,int len, int indice)
-{
-	t_stack *temp;
-	
-	while(*b)
-	{
-
-		if((*b)->rank == len - 1)
-		{
-			ft_push(b, a, "pa\n");
-			len--;
-			indice = ft_maxnumber_indice(*b, len);
-		}
-		else if(indice < len /2)
-			ft_rotate(b, "rb\n");
-		else  if(indice >= len /2)
-			ft_reverse_rotate(b, "rrb\n");
-		
-	}
-}
-//---------
-// n1  n2 n3
-// i1  i2 i3
-void	sort_3_numbers(t_stack **a, t_stack **b)
-{
-	if((*a)->rank == 2)//the begist numver in the begining
-	{
-		ft_rotate(a, "ra\n");//move it to the end 
-		if((*a)->rank == 1)
-			ft_swap(a, "sa\n");
-		return ;
-	}
-	if((*a)->rank == 1)//the middle number in the beging
-	{
-		ft_swap(a, "sa\n");
-		if((*a)->rank == 2)
-		{
-			ft_rotate(a, "ra\n");
-			ft_swap(a, "sa\n");
-		}
-		return ;
-	}
-	else//the small number is in the begiging
-	{
-		ft_rotate(a, "ra\n");
-		ft_swap(a, "sa\n");
-		ft_reverse_rotate(a, "rra\n");
-		return ;
-	}
-}
-
-void	ft_less_than_five(t_stack **a, t_stack **b, int len)
-{
-	if(len == 2)
-		ft_swap(a, "sa\n");
-	else if (len == 3)
-		sort_3_numbers(a, b);
-	// else if (len == 4)
-	// {
-	// 	while(*a)
-	// 	{
-	// 		if((*a)->rank)
-	// 		ft_rotate(a, "ra\n");
-	// 	}
-	// }
-	// else if (len == 5)
-	// 	sort_5_numbers(a, b);
-	return ;
-}
 
 int main (int argc, char **argv)
 {
@@ -400,43 +239,22 @@ int main (int argc, char **argv)
 	ft_check2(argv);
 	ft_check3(argv);
 	stock = ft_join_args(argv);
-	//------
 	split = ft_split(stock);
-	//----
 	len = ft_arraylen(split);
 	numbers = ft_creat_array(split, len);
 	ft_no_doubles(numbers, len);
 	ft_not_sorted(numbers, len);
-	//-----
 	stack_a = ft_create_stack_a(numbers, len);
 	ft_sort_array(numbers, len);
 	ft_add_rank(stack_a, numbers, len);// add and remove & and see what happsns.
-	//----
-	
-	print_stack(stack_a);
-
 	if(len <= 5)
 	{
 		ft_less_than_five(&stack_a, &stack_b, len);
-		// exit (0);  the program must exit after this function
-	}
-	print_stack(stack_a);
-
-
-
-
-		
-	// ft_sort(&stack_a, &stack_b, len);
-	// indice = ft_maxnumber_indice(stack_b, len);
-	
-	// print_stack(stack_a);
-	// print_stack(stack_b);
-	// ft_sort_2(&stack_b, &stack_a, len, indice);
-	// print_stack(stack_a);
-	// print_stack(stack_b);
-
-	//-----
-	
+		exit (0);  //the program must exit after this function
+	}	
+	ft_sort_with_chunk(&stack_a, &stack_b, len);
+	indice = ft_maxnumber_indice(stack_b, len);
+	ft_final_sort(&stack_b, &stack_a, len, indice);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:19:20 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/09 22:17:48 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/12 17:03:57 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,23 @@ void ft_putstr(char *str)
 	i = -1;
 	while(str[++i])
 		write(1, &str[i], 1);
+}
+
+void ft_sort_array(int *numbers, int len)
+{
+	int i;
+	int swap;
+	i = 0;
+	while(i<len - 1)
+	{
+		if(numbers[i] > numbers[i+1])
+		{
+			swap = numbers[i];
+			numbers[i] = numbers[i+1];
+			numbers[i+1] = swap;
+			i = 0;
+		}
+		else
+			i++;
+	}
 }
