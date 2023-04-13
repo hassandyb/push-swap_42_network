@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/13 17:20:54 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/13 18:50:07 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,15 +131,14 @@ char	*ft_join_args(char **argv)
 
 void	ft_free_linked_list(t_stack *ptr)
 {
-	t_stack *next_node_saver;
+	t_stack *node_saver;
 	
 	while(ptr)
 	{
-		ptr->next = next_node_saver;
-		free (ptr);
-		ptr = next_node_saver;
+		node_saver = ptr;
+		ptr = ptr->next;
+		free (node_saver);
 	}
-
 }
 
 void ft_linked_list_protection(int *array, t_stack *to_check, t_stack *begin)
@@ -276,33 +275,38 @@ void ft_push_2_in_left(t_stack **b, t_stack **a, int len)
 	ft_swap(a, "sa\n");
 }
 
-void ft_final_sort(**b, **a, )
+void ft_final_sort(t_stack **b, t_stack **a, int len)
 {
+
 	int indice;
 	int befor_max_indice;
 	
-	while(stack_b)
+		// printf(">%d   |", *b);
+	while(*b)
 	{
-		indice = ft_maxnumber_indice(stack_b, len);
-		befor_max_indice = ft_maxnumber_indice(stack_b, len - 1);
+		// printf("%d   |", len);
+		indice = ft_maxnumber_indice(*b, len);
+		befor_max_indice = ft_maxnumber_indice(*b, len - 1);
 		if(indice < len / 2 && befor_max_indice < len / 2 && befor_max_indice < indice && len > 3)
 		{
-			ft_push_2_in_right(&stack_b, &stack_a, len);
+			ft_push_2_in_right(b, a, len);
 			len = len - 2;
 		}
 		else if(indice > len / 2 && befor_max_indice > len / 2 && befor_max_indice > indice && len > 3)
 		{
-			ft_push_2_in_left(&stack_b, &stack_a, len);
+			ft_push_2_in_left(b, a, len);
 			len = len - 2;
 		}
 		else
-			len = ft_normal_case(&stack_b, &stack_a, len, indice);
+			len = ft_normal_case(b, a, len, indice);
 	}
 }
 
+void ft_leaks(){system("leaks push_swap");}
 
 int main (int argc, char **argv)
 {
+	atexit (ft_leaks);
 	char 	*stock;
 	char 	**split;
 	int		*numbers;
@@ -325,7 +329,10 @@ int main (int argc, char **argv)
 	if(len <= 5)
 		ft_less_than_five(&stack_a, &stack_b, len);
 	ft_sort_with_chunk(&stack_a, &stack_b, len);
-	ft_final_sort()
+	ft_final_sort(&stack_b, &stack_a, len);
+	ft_free_linked_list(stack_a);
+	//  stack_a = NULL;
+	// ft_swap(&stack_a, "ikhan\n");
 	// while(stack_b)
 	// {
 	// 	indice = ft_maxnumber_indice(stack_b, len);
