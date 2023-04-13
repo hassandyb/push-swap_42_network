@@ -1,0 +1,56 @@
+
+// tested tested nameand director    ./    numbers in the stack      numbers of tests
+// ./push_swap_tester/tester.sh ./ 500 10
+
+// ./push_swap 9  8 2 7 3 6 4 5 | ./checker_Mac 9  8 2 7 3 6 4 5
+
+// void ft_leaks(){system("leaks push_swap");}
+// atexit (ft_leaks);
+
+
+//--------  for tests only --------
+void print_stack(t_stack *list)
+{
+	if(list == NULL)
+	{
+		printf("NUll\n");
+		return;
+	}
+		
+	while(list)
+	{
+		printf("%d      ", list->data);
+		list = list->next;
+	}
+	printf("\n");
+}
+
+void print_stack_(t_stack *list)
+{
+	if(list == NULL)
+	{
+		printf("NUll\n");
+		return;
+	}
+		
+	while(list)
+	{
+		printf("%d->%d      ", list->data, list->rank);
+		list = list->next;
+	}
+	printf("\n");
+}
+
+void print_array(int *array, int len)
+{
+	int i = 0;
+	if(len == 0)
+		printf("len equal to zero!");
+	while(i < len)
+	{
+		printf("%d  ", array[i]);
+		i++;
+	}
+	printf("\n");
+}
+//-------------------------------
