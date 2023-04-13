@@ -1,0 +1,5 @@
+
+// tested tested nameand director    ./    numbers in the stack      numbers of tests
+// ./push_swap_tester/tester.sh ./ 500 10
+
+// ./push_swap 9  8 2 7 3 6 4 5 | ./checker_Mac 9  8 2 7 3 6 4 5

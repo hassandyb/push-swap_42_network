@@ -1,0 +1,21 @@
+
+case :    bformax     max        len/2         max    beformax
+
+
+
+
+
+if(posinton of bf_max < len\2 && posinton of max < len\2 && posinton of bf_max < posinton of max)
+	rotate b untile it in the beging 
+	then push to a 
+	the rotate b again until you find amx 
+
+	else if(posinton of bf_max > len\2 && posinton of max > len\2 && posinton of bf_max > posinton of max)
+		rrb
+
+	else 
+		search for max and push it to a
+
+	max b  23456789
+	sa => b max 9 8 76 5 43
+
