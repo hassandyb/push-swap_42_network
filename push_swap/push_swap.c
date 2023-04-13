@@ -6,19 +6,58 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/12 16:37:25 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/13 21:56:10 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//chanks algo
-//./push-swap aaa aaa aaa aaa aaaa  argc = 6;
+//--------  for tests only --------
+void print_stack(t_stack *list)
+{
+	if(list == NULL)
+	{
+		printf("NUll\n");
+		return;
+	}
+		
+	while(list)
+	{
+		printf("%d      ", list->data);
+		list = list->next;
+	}
+	printf("\n");
+}
 
-// spaces : argc - 2;
-// back slash zero :+ 1 ;
+void print_stack_(t_stack *list)
+{
+	if(list == NULL)
+	{
+		printf("NUll\n");
+		return;
+	}
+		
+	while(list)
+	{
+		printf("%d->%d      ", list->data, list->rank);
+		list = list->next;
+	}
+	printf("\n");
+}
 
-
+void print_array(int *array, int len)
+{
+	int i = 0;
+	if(len == 0)
+		printf("len equal to zero!");
+	while(i < len)
+	{
+		printf("%d  ", array[i]);
+		i++;
+	}
+	printf("\n");
+}
+//-------------------------------
 
 void ft_check1(char **argv)
 {
@@ -97,6 +136,15 @@ void ft_check3(char **argv)
 	}
 }
 
+void	ft_check_args(int argc, char **argv)
+{
+	if(argc == 1)
+			exit (0);
+	ft_check1(argv);
+	ft_check2(argv);
+	ft_check3(argv);
+}
+
 char	*ft_join_args(char **argv)
 {
 	char	*stock;
@@ -119,109 +167,10 @@ char	*ft_join_args(char **argv)
 	return (stock);
 }
 
-//--------------------------
-
-void	ft_free_linked_list(t_stack *ptr)
-{
-	t_stack *next_node_saver;
-	
-	while(ptr)
-	{
-		ptr->next = next_node_saver;
-		free (ptr);
-		ptr = next_node_saver;
-	}
-
-}
-
-void ft_linked_list_protection(int *array, t_stack *to_check, t_stack *begin)
-{
-	if(to_check == NULL)
-	{
-		free (array);
-		ft_free_linked_list(begin);
-		exit (1);
-	}
-}
-
-t_stack	*ft_create_stack_a(int *numbers, int len)
-{
-	t_stack *old;
-	t_stack *new;
-	t_stack *begin;
-	int i;
-	
-	i = 0;
-	begin = malloc(sizeof(t_stack));
-	ft_linked_list_protection(numbers, begin, begin);
-	begin->rank = -1;
-	begin->data = numbers[i++];
-	begin->next = NULL;
-	old = begin;
-	while(i<len)
-	{
-		new = malloc(sizeof(t_stack));
-		ft_linked_list_protection(numbers, new, begin);
-		new->rank = -1;
-		new->data = numbers[i];
-		new->next = NULL;
-		old->next = new;
-		old = new;
-		i++;
-	}
-	return (begin);
-}
-
-//--------  for tests only --------
-void print_stack(t_stack *list)
-{
-	if(list == NULL)
-	{
-		printf("NUll\n");
-		return;
-	}
-		
-	while(list)
-	{
-		printf("%d      ", list->data);
-		list = list->next;
-	}
-	printf("\n");
-}
-
-void print_stack_(t_stack *list)
-{
-	if(list == NULL)
-	{
-		printf("NUll\n");
-		return;
-	}
-		
-	while(list)
-	{
-		printf("%d->%d      ", list->data, list->rank);
-		list = list->next;
-	}
-	printf("\n");
-}
-
-void print_array(int *array, int len)
-{
-	int i = 0;
-	if(len == 0)
-		printf("len equal to zero!");
-	while(i < len)
-	{
-		printf("%d  ", array[i]);
-		i++;
-	}
-	printf("\n");
-}
-//-------------------------------
-
 
 int main (int argc, char **argv)
 {
+
 	char 	*stock;
 	char 	**split;
 	int		*numbers;
@@ -229,38 +178,26 @@ int main (int argc, char **argv)
 	t_stack *stack_a;
 	t_stack	*stack_b;
 	int indice;
-	
+	int befor_max_indice;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if(argc == 1)
-		exit (0);
-	ft_check1(argv);
-	ft_check2(argv);
-	ft_check3(argv);
+	ft_check_args(argc, argv);
 	stock = ft_join_args(argv);
 	split = ft_split(stock);
 	len = ft_arraylen(split);
 	numbers = ft_creat_array(split, len);
-	ft_no_doubles(numbers, len);
-	ft_not_sorted(numbers, len);
 	stack_a = ft_create_stack_a(numbers, len);
 	ft_sort_array(numbers, len);
-	ft_add_rank(stack_a, numbers, len);// add and remove & and see what happsns.
+	ft_add_rank(stack_a, numbers, len);
+	
 	if(len <= 5)
-	{
 		ft_less_than_five(&stack_a, &stack_b, len);
-		exit (0);  //the program must exit after this function
-	}	
 	ft_sort_with_chunk(&stack_a, &stack_b, len);
-	indice = ft_maxnumber_indice(stack_b, len);
-	ft_final_sort(&stack_b, &stack_a, len, indice);
+	
+	ft_final_sort(&stack_b, &stack_a, len);
+	ft_free_linked_list(stack_a);
 }
-
-
-
-
-
 
 
 // sa = swap stack a = swap tow first data;   =>  3 8 4 6 =>   8 3  4 6
@@ -308,4 +245,6 @@ int main (int argc, char **argv)
 // sort 3  numbers
 // sort 2 numbers
 // sort 4/5 numbers
+
  //./a.out  $(seq 200 -200 | sort -R | head -n100) | wc -l  
+

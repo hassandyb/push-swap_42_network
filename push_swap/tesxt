@@ -1,3 +1,10 @@
+
+case :    bformax     max        len/2         max    beformax
+
+
+
+
+
 if(posinton of bf_max < len\2 && posinton of max < len\2 && posinton of bf_max < posinton of max)
 	rotate b untile it in the beging 
 	then push to a 

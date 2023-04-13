@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:23:08 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/05 17:29:32 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/13 17:06:58 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,6 @@ int ft_atoi(char *s, char **to_free)
 	return (result);
 }
 
-int *ft_creat_array(char **split, int len)
-{
-	int	i;
-	int	*numbers;
-
-	i = 0;
-	numbers = (int *)malloc(len * sizeof(int));
-	if(numbers == NULL)
-	{
-		ft_free_double_pointer(split);
-		exit (1);
-	}
-	while(split[i])
-	{
-		numbers[i] = ft_atoi(split[i], split);
-		i++;
-	}
-	ft_free_double_pointer(split);
-	return (numbers);
-}
-
 void	ft_no_doubles(int *numbers, int len)
 {
 	int j;
@@ -110,4 +89,27 @@ void	ft_not_sorted(int *numbers, int len)
 	write(2, "Error :\nNumbers are already sorted - or one number !",53);
 	free(numbers);
 	exit (1);
+}
+
+int *ft_creat_array(char **split, int len)
+{
+	int	i;
+	int	*numbers;
+
+	i = 0;
+	numbers = (int *)malloc(len * sizeof(int));
+	if(numbers == NULL)
+	{
+		ft_free_double_pointer(split);
+		exit (1);
+	}
+	while(split[i])
+	{
+		numbers[i] = ft_atoi(split[i], split);
+		i++;
+	}
+	ft_free_double_pointer(split);
+	ft_no_doubles(numbers, len);
+	ft_not_sorted(numbers, len);
+	return (numbers);
 }

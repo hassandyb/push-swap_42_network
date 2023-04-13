@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/12 18:24:26 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/13 21:15:12 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_stack
 void ft_check1(char **argv);
 void	ft_check2(char **argv);
 void ft_check3(char **argv);
+void	ft_check_args(int argc, char **argv);
 int	ft_strlen(char *s);
 void ft_protection(char *to_check, char *to_free);
 char	*ft_strjoin(char *stock, char *arg);
@@ -56,13 +57,18 @@ void ft_rotate(t_stack **ptr, char *msg);
 void ft_swap(t_stack **ptr, char *msg);
 void ft_reverse_rotate(t_stack **ptr, char *msg);
 void ft_rr(t_stack **a, t_stack **b);
+void ft_ss(t_stack **a, t_stack **b);
+void ft_rrr(t_stack **a, t_stack **b);
 
 void ft_sort_array(int *numbers, int len);
 void ft_add_rank(t_stack *ptr, int *numbers, int len);
 int ft_wich_chunk(int len);
 void ft_sort_with_chunk(t_stack **a, t_stack **b,int len);
 int ft_maxnumber_indice(t_stack *list, int len);
-void ft_final_sort(t_stack **b, t_stack **a,int len, int indice);
+void ft_push_2_in_right(t_stack **b, t_stack **a, int len);
+void ft_push_2_in_left(t_stack **b, t_stack **a, int len);
+void ft_final_sort(t_stack **b, t_stack **a, int len);
+int ft_normal_case(t_stack **b, t_stack **a,int len, int indice);
 
 void	ft_sort_3_numbers(t_stack **a);
 void	ft_sort_5_numbers(t_stack **a, t_stack **b);
