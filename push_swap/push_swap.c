@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/14 00:55:29 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:44:11 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,8 @@ void	ft_check_args(int argc, char **argv)
 	ft_check3(argv);
 }
 
-
-// void ft_leaks (){system("leaks push_swap");}
-
 int main (int argc, char **argv)
 {
-	// atexit (&ft_leaks);
 	char 	*stock;
 	char 	**split;
 	int		*numbers;
@@ -171,7 +167,9 @@ int main (int argc, char **argv)
 	numbers = ft_creat_array(split, len);
 	stack_a = ft_create_stack_a(numbers, len);
 
+
 	ft_sort_array(numbers, len);
+
 	ft_add_rank(stack_a, numbers, len);
 	
 	if(len <= 5)
@@ -220,6 +218,3 @@ int main (int argc, char **argv)
 
 
 
-
-error in 5
-error in 4
