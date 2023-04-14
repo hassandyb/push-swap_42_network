@@ -6,11 +6,12 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/13 21:56:10 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/14 00:55:29 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 //--------  for tests only --------
 void print_stack(t_stack *list)
@@ -139,38 +140,19 @@ void ft_check3(char **argv)
 void	ft_check_args(int argc, char **argv)
 {
 	if(argc == 1)
-			exit (0);
+		exit (0);
+
 	ft_check1(argv);
 	ft_check2(argv);
 	ft_check3(argv);
 }
 
-char	*ft_join_args(char **argv)
-{
-	char	*stock;
-	int		y;
 
-	stock = NULL;
-	y = 1;
-	while(argv[y])
-	{
-		stock = ft_strjoin(stock, argv[y]);
-		y++;
-	}
-	y = 0;
-	while(stock[y])
-	{
-		if(stock[y] == '\t')
-			stock[y] = ' ';
-		y++;
-	}
-	return (stock);
-}
-
+// void ft_leaks (){system("leaks push_swap");}
 
 int main (int argc, char **argv)
 {
-
+	// atexit (&ft_leaks);
 	char 	*stock;
 	char 	**split;
 	int		*numbers;
@@ -188,6 +170,7 @@ int main (int argc, char **argv)
 	len = ft_arraylen(split);
 	numbers = ft_creat_array(split, len);
 	stack_a = ft_create_stack_a(numbers, len);
+
 	ft_sort_array(numbers, len);
 	ft_add_rank(stack_a, numbers, len);
 	
@@ -196,6 +179,8 @@ int main (int argc, char **argv)
 	ft_sort_with_chunk(&stack_a, &stack_b, len);
 	
 	ft_final_sort(&stack_b, &stack_a, len);
+	      
+	
 	ft_free_linked_list(stack_a);
 }
 
@@ -236,15 +221,5 @@ int main (int argc, char **argv)
 
 
 
-
-/* check count
-	6 ---> 100 size /5
-	101 ---> size /11
-*/
-// not chunks / hard coding
-// sort 3  numbers
-// sort 2 numbers
-// sort 4/5 numbers
-
- //./a.out  $(seq 200 -200 | sort -R | head -n100) | wc -l  
-
+error in 5
+error in 4

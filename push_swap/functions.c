@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:19:20 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/12 17:03:57 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/13 22:31:28 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,14 @@ void ft_sort_array(int *numbers, int len)
 		else
 			i++;
 	}
+}
+
+int ft_arraylen(char **split)
+{
+	int	l;
+
+	l = 0;
+	while(split[l])
+		l++;
+	return (l);
 }

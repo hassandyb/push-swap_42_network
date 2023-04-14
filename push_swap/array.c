@@ -6,20 +6,32 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:23:08 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/13 17:06:58 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/13 23:46:29 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_arraylen(char **split)
+char	*ft_join_args(char **argv)
 {
-	int	l;
+	char	*stock;
+	int		y;
 
-	l = 0;
-	while(split[l])
-		l++;
-	return (l);
+	stock = NULL;
+	y = 1;
+	while(argv[y])
+	{
+		stock = ft_strjoin(stock, argv[y]);
+		y++;
+	}
+	y = 0;
+	while(stock[y])
+	{
+		if(stock[y] == '\t')
+			stock[y] = ' ';
+		y++;
+	}
+	return (stock);
 }
 
 int ft_atoi(char *s, char **to_free)
@@ -77,7 +89,7 @@ void	ft_no_doubles(int *numbers, int len)
 	}
 }
 
-void	ft_not_sorted(int *numbers, int len)
+void	ft_not_one_number_or_sorted(int *numbers, int len)
 {
 	int i = 0;
 	while(i < len - 1)
@@ -86,7 +98,6 @@ void	ft_not_sorted(int *numbers, int len)
 			return;
 		i++;
 	}
-	write(2, "Error :\nNumbers are already sorted - or one number !",53);
 	free(numbers);
 	exit (1);
 }
@@ -110,6 +121,6 @@ int *ft_creat_array(char **split, int len)
 	}
 	ft_free_double_pointer(split);
 	ft_no_doubles(numbers, len);
-	ft_not_sorted(numbers, len);
+	ft_not_one_number_or_sorted(numbers, len);
 	return (numbers);
 }
