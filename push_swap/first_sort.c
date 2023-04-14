@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:56:26 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/14 21:29:43 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/14 23:03:53 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ void	ft_sort_with_chunk(t_stack **a, t_stack **b,int len)
 	while (*a != NULL)
 	{
 		count = 0;
-		while ( *a != NULL && count < chunk)
+		while (*a != NULL && count < chunk)
 		{
-			if ((*a)->rank < (chunk * indice))/
+			if ((*a)->rank < (chunk * indice))
 			{
 				ft_push(a, b, "pb\n");
-				if ((*b)->rank >= (chunk * indice) - (chunk  / 2)) // we split the chunk numbers big at end small at the beginig - while to get the chank numbers we split them ==>big numbers -->rorate ->we to the end | and we keep small numbers in the beging of our linkedlist
+				if ((*b)->rank >= (chunk * indice) - (chunk  / 2))
 				{
 					if (*a && (*a)->rank >= (chunk * indice))
 						ft_rr(a, b);
