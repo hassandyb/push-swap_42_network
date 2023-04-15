@@ -6,21 +6,11 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:56:26 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/14 23:03:53 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/15 12:13:09 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_linked_list_protection(int *array, t_stack *to_check, t_stack *begin)
-{
-	if (to_check == NULL)
-	{
-		free (array);
-		ft_free_linked_list(begin);
-		exit (1);
-	}
-}
 
 t_stack	*ft_create_stack_a(int *numbers, int len)
 {
@@ -84,7 +74,15 @@ int	ft_wich_chunk(int len)
 	return (chunk);
 }
 
-void	ft_sort_with_chunk(t_stack **a, t_stack **b,int len)
+void	ft_sort_from_middle(t_stack **a, t_stack **b, int indice, int chunk)
+{
+	if (*a && (*a)->rank >= (chunk * indice))
+		ft_rr(a, b);
+	else
+		ft_rotate(b, "rb\n");
+}
+
+void	ft_sort_with_chunk(t_stack **a, t_stack **b, int len)
 {
 	int	chunk;
 	int	count;
@@ -100,13 +98,8 @@ void	ft_sort_with_chunk(t_stack **a, t_stack **b,int len)
 			if ((*a)->rank < (chunk * indice))
 			{
 				ft_push(a, b, "pb\n");
-				if ((*b)->rank >= (chunk * indice) - (chunk  / 2))
-				{
-					if (*a && (*a)->rank >= (chunk * indice))
-						ft_rr(a, b);
-					else
-						ft_rotate(b, "rb\n");
-				}
+				if ((*b)->rank >= (chunk * indice) - (chunk / 2))
+					ft_sort_from_middle(a, b, indice, chunk);
 				count++;
 			}
 			else

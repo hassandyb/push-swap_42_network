@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:08:58 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/14 20:57:04 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/15 12:39:19 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,36 @@
 
 void	ft_sort_3_numbers(t_stack **a, int min_rank)
 {
-
-	if((*a)->rank == min_rank + 2 )//the begist numver in the begining
+	if ((*a)->rank == min_rank + 2)
 	{
-		ft_rotate(a, "ra\n");//move it to the end 
-		if((*a)->rank == min_rank + 1)
+		ft_rotate(a, "ra\n");
+		if ((*a)->rank == min_rank + 1)
 			ft_swap(a, "sa\n");
-		return ;
 	}
-	else if((*a)->rank == min_rank + 1)//the middle number in the beging
+	else if ((*a)->rank == min_rank + 1)
 	{
 		ft_swap(a, "sa\n");
-		if((*a)->rank == min_rank + 2)
+		if ((*a)->rank == min_rank + 2)
 		{
 			ft_rotate(a, "ra\n");
 			ft_swap(a, "sa\n");
 		}
-		return ;
 	}
-	else if((*a)->rank == min_rank)//the small number is in the begiging
+	else if ((*a)->rank == min_rank)
 	{
-		if((*a)->next->rank == min_rank + 1 )// already sorted
-			return;
+		if ((*a)->next->rank == min_rank + 1)
+			return ;
 		ft_rotate(a, "ra\n");
 		ft_swap(a, "sa\n");
 		ft_reverse_rotate(a, "rra\n");
-		return ;
 	}
 }
 
-void ft_sort_4_numbers(t_stack **a, t_stack **b)
+void	ft_sort_4_numbers(t_stack **a, t_stack **b)
 {
-	while(*a)
+	while (*a)
 	{
-		if((*a)->rank == 0)
+		if ((*a)->rank == 0)
 		{
 			ft_push(a, b, "pb\n");
 			break ;
@@ -59,14 +55,14 @@ void ft_sort_4_numbers(t_stack **a, t_stack **b)
 	ft_push(b, a, "pa\n");
 }
 
-void ft_sort_5_numbers(t_stack **a, t_stack **b)
+void	ft_sort_5_numbers(t_stack **a, t_stack **b)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	while(count < 2)
+	while (count < 2)
 	{
-		if((*a)->rank < 2)
+		if ((*a)->rank < 2)
 		{
 			ft_push(a, b, "pb\n");
 			count++;
@@ -77,16 +73,16 @@ void ft_sort_5_numbers(t_stack **a, t_stack **b)
 	ft_sort_3_numbers(a, 2);
 	ft_push(b, a, "pa\n");
 	ft_push(b, a, "pa\n");
-	if((*a)->rank == 1)
+	if ((*a)->rank == 1)
 		ft_swap(a, "sa\n");
 }
 
 void	ft_less_than_five(t_stack **a, t_stack **b, int len)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	if(len == 2)
+	if (len == 2)
 		ft_swap(a, "sa\n");
 	else if (len == 3)
 		ft_sort_3_numbers(a, 0);
@@ -97,5 +93,3 @@ void	ft_less_than_five(t_stack **a, t_stack **b, int len)
 	ft_free_linked_list(*a);
 	exit (0);
 }
-
-

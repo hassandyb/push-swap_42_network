@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:10 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/14 18:07:21 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/15 11:52:17 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_stack
 	int data;
 	struct s_stack *next;
 } t_stack;
+
+
 
 void ft_check1(char **argv);
 void	ft_check2(char **argv);
