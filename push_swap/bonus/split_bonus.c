@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:05:27 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 15:59:16 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/16 21:55:20 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_count(char *stock)//---
 
 /*i added **split to free it in case of failer allocation*/
 
-char	*ft_substr(char *stock, int begin, int len, char **split)//---
+char	*ft_substr_2(char *stock, int begin, int len, char **split)//---
 {
 	char	*sub;
 	int		i;
@@ -78,7 +78,7 @@ char	**ft_split(char *stock)
 		begin = x;
 		while (stock[x] != ' ' && stock[x] != '\0')
 			x++;
-		split[y] = ft_substr(stock, begin, x - begin, split);
+		split[y] = ft_substr_2(stock, begin, x - begin, split);
 		y++;
 	}
 	split[y] = NULL;

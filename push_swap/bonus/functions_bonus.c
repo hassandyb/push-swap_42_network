@@ -6,14 +6,24 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:19:20 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 16:13:07 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:47:27 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
 /*why + 1 + 1 ===>  +1 for the space +1 for '\0'*/
-char	*ft_strjoin(char *stock, char *arg)//---
+
+void	ft_protection(char *to_check, char *to_free)
+{
+	if (to_check == NULL)
+	{
+		free(to_free);
+		exit (1);
+	}
+}
+
+char	*ft_strjoin_2(char *stock, char *arg)//---
 {
 	char	*result;
 	int		i;

@@ -6,13 +6,11 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:01:43 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 16:06:41 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:16:14 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
-
-
 
 void	ft_push(t_stack **src, t_stack **dst, char *msg)
 {
@@ -68,12 +66,12 @@ void	ft_reverse_rotate(t_stack **ptr, char *msg)
 {
 	t_stack	*begin;
 	t_stack	*befor_last;
-	t_stack	*temp;
 
+	befor_last = NULL;
 	if (*ptr == NULL || (*ptr)->next == NULL)
 		return ;
 	begin = *ptr;
-	while (ptr)
+	while (*ptr)
 	{
 		if ((*ptr)->next->next == NULL)
 		{

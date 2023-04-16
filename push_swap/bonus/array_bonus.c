@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:03:45 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 16:00:33 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/16 21:00:41 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_join_args(char **argv)//---
 	y = 1;
 	while (argv[y])
 	{
-		stock = ft_strjoin(stock, argv[y]);
+		stock = ft_strjoin_2(stock, argv[y]);
 		y++;
 	}
 	y = 0;
@@ -124,6 +124,5 @@ int	*ft_creat_array(char **split, int len)//-----
 	}
 	ft_free_double_pointer(split);
 	ft_no_doubles(numbers, len);
-	ft_not_one_number_or_sorted(numbers, len);
 	return (numbers);
 }

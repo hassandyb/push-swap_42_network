@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:06:26 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 16:08:39 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:36:17 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ void	ft_error(char **to_free, char *msg)//--- needed
 
 void	ft_free_double_pointer(char **s)//needed
 {
-	int	l;
+	if(s != NULL)
+	{
+		int	l;
 
-	l = -1;
-	while (s[++l])
-		free(s[l]);
-	free(s);
+		l = -1;
+		while (s[++l])
+			free(s[l]);
+		free(s);
+	}
 }
 
 void	ft_protection_double_ptr(char **to_check, char *to_free)//--
