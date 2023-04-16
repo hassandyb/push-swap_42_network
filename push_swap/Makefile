@@ -6,7 +6,7 @@
 #    By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 15:43:04 by hed-dyb           #+#    #+#              #
-#    Updated: 2023/04/15 21:33:39 by hed-dyb          ###   ########.fr        #
+#    Updated: 2023/04/16 15:48:05 by hed-dyb          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.c $(LIBRARY) $(BONUS_LIBRARY)
-	$(CC) $(FLAGS) $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
 	$(RM) $(OBJ)

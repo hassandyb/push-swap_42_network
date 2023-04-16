@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:13:11 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/14 21:22:36 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/16 15:48:22 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	ft_maxnumber_indice(t_stack *list, int len)
 
 int	ft_normal_case(t_stack **b, t_stack **a, int len, int indice)
 {
-	t_stack	*temp;
-
 	if ((*b)->rank == len - 1)
 	{
 		ft_push(b, a, "pa\n");

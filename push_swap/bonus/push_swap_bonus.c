@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 15:35:50 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 14:40:48 by hed-dyb          ###   ########.fr       */
+/*   Created: 2023/04/16 14:51:18 by hed-dyb           #+#    #+#             */
+/*   Updated: 2023/04/16 15:58:25 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-void	ft_check1(char **argv)
+
+
+void	ft_check1(char **argv)//----
 {
 	int	y;
 	int	x;
@@ -25,14 +27,14 @@ void	ft_check1(char **argv)
 			x++;
 		if (argv[y][x] == '\0' || argv[y][0] == '\0')
 		{
-			write(2, "Error :\nEmpty arg or arg full of spaces and tabs!", 50);
+			write(2, "Error\n", 7);
 			exit(0);
 		}
 		y++;
 	}
 }
 
-void	ft_check2(char **argv)
+void	ft_check2(char **argv)//--
 {
 	int	y;
 	int	x;
@@ -46,13 +48,13 @@ void	ft_check2(char **argv)
 			if (argv[y][x] != ' ' && argv[y][x] != '\t' && argv[y][x] != '-'
 				&& argv[y][x] != '+' && (argv[y][x] < '0' || argv[y][x] > '9'))
 			{
-				write(2, "Error :\nCheck args!", 20);
+				write(2, "Error\n", 7);
 				exit(0);
 			}
 			if ((argv[y][x] == '-' || argv[y][x] == '+') &&
 				(argv[y][x + 1] == ' ' || argv[y][x + 1] == '\t'))
 			{
-				write(2, "Error :\nTab or space after + or -!", 35);
+				write(2, "Error\n", 7);
 				exit(0);
 			}
 			x++;
@@ -61,7 +63,7 @@ void	ft_check2(char **argv)
 	}
 }
 
-void	ft_check3(char **argv)
+void	ft_check3(char **argv)//----
 {
 	int	y;
 	int	x;
@@ -75,13 +77,13 @@ void	ft_check3(char **argv)
 			if ((argv[y][x] == '-' || argv[y][x] == '+') && (argv[y][x + 1] ==
 				'-' || argv[y][x + 1] == '+'))
 			{
-				write(1, "Error :\nYou have -- ++ -+ or +-!", 33);
+				write(1, "Error\n", 7);
 				exit (0);
 			}
 			if ((argv[y][x] >= '0' && argv[y][x] <= '9') && (argv[y][x + 1] ==
 				'+' || argv[y][x + 1] == '-'))
 			{
-				write(1, "Error :\nYou have + or - after a number!", 40);
+				write(1, "Error\n", 7);
 				exit (0);
 			}
 			x++;
@@ -90,7 +92,7 @@ void	ft_check3(char **argv)
 	}
 }
 
-void	ft_check_args(int argc, char **argv)
+void	ft_check_args(int argc, char **argv)//---
 {
 	if (argc == 1)
 		exit (0);
@@ -107,19 +109,13 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	stack_a = NULL;
 	stack_b = NULL;
 	ft_check_args(argc, argv);
 	split = ft_split(ft_join_args(argv));
 	len = ft_arraylen(split);
 	numbers = ft_creat_array(split, len);
 	stack_a = ft_create_stack_a(numbers, len);
-	
-	ft_sort_array(numbers, len);
-	ft_add_rank(stack_a, numbers, len);
-	if (len <= 5)
-		ft_less_than_five(&stack_a, &stack_b, len);
-	ft_sort_with_chunk(&stack_a, &stack_b, len);
-	ft_final_sort(&stack_b, &stack_a, len);
+
+
 	ft_free_linked_list(stack_a);
 }
