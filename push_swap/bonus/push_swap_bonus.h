@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 14:50:06 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 21:57:20 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/17 00:36:36 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ t_stack	*ft_create_stack_a(int *numbers, int len);
 char	*ft_strjoin_2(char *stock, char *arg);
 void	ft_putstr(char *str);
 int	ft_arraylen(char **split);
-void	ft_push(t_stack **src, t_stack **dst, char *msg);
-void	ft_swap(t_stack **ptr, char *msg);
-void	ft_rotate(t_stack **ptr, char *msg);
-void	ft_reverse_rotate(t_stack **ptr, char *msg);
+
+void	ft_push(t_stack **src, t_stack **dst);
+void	ft_swap(t_stack **ptr);
+void	ft_rotate(t_stack **ptr);
+void	ft_reverse_rotate(t_stack **ptr);
+
 void	ft_rr(t_stack **a, t_stack **b);
 void	ft_ss(t_stack **a, t_stack **b);
 void	ft_rrr(t_stack **a, t_stack **b);

@@ -6,13 +6,13 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:01:43 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 17:16:14 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/17 00:34:41 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	ft_push(t_stack **src, t_stack **dst, char *msg)
+void	ft_push(t_stack **src, t_stack **dst)
 {
 	t_stack	*src_begin;
 
@@ -22,10 +22,9 @@ void	ft_push(t_stack **src, t_stack **dst, char *msg)
 	*src = (*src)->next;
 	src_begin->next = *dst;
 	*dst = src_begin;
-	ft_putstr(msg);
 }
 
-void	ft_swap(t_stack **ptr, char *msg)
+void	ft_swap(t_stack **ptr)
 {
 	t_stack	*swap;
 
@@ -35,11 +34,9 @@ void	ft_swap(t_stack **ptr, char *msg)
 	(*ptr)->next = (*ptr)->next->next;
 	swap->next = (*ptr);
 	(*ptr) = swap;
-	if (msg)
-		ft_putstr(msg);
 }
 
-void	ft_rotate(t_stack **ptr, char *msg)
+void	ft_rotate(t_stack **ptr)
 {
 	t_stack	*begin;
 	t_stack	*temp;
@@ -58,11 +55,9 @@ void	ft_rotate(t_stack **ptr, char *msg)
 	temp->next = *ptr;
 	(*ptr)->next = NULL;
 	(*ptr) = begin;
-	if (msg)
-		ft_putstr(msg);
 }
 
-void	ft_reverse_rotate(t_stack **ptr, char *msg)
+void	ft_reverse_rotate(t_stack **ptr)
 {
 	t_stack	*begin;
 	t_stack	*befor_last;
@@ -83,6 +78,4 @@ void	ft_reverse_rotate(t_stack **ptr, char *msg)
 	(*ptr) = (*ptr)->next;
 	(*ptr)->next = begin;
 	befor_last->next = NULL;
-	if (msg)
-		ft_putstr(msg);
 }

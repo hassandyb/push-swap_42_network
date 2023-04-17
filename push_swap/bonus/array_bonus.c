@@ -6,13 +6,11 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:03:45 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 21:00:41 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/17 01:21:38 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
-
-
 
 char	*ft_join_args(char **argv)//---
 {
@@ -90,20 +88,7 @@ void	ft_no_doubles(int *numbers, int len)//---
 	}
 }
 
-void	ft_not_one_number_or_sorted(int *numbers, int len)//---
-{
-	int	i;
 
-	i = 0;
-	while (i < len - 1)
-	{
-		if (numbers[i] > numbers[i + 1])
-			return ;
-		i++;
-	}
-	free(numbers);
-	exit (1);
-}
 
 int	*ft_creat_array(char **split, int len)//-----
 {

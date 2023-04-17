@@ -6,7 +6,7 @@
 /*   By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:06:26 by hed-dyb           #+#    #+#             */
-/*   Updated: 2023/04/16 20:36:17 by hed-dyb          ###   ########.fr       */
+/*   Updated: 2023/04/17 01:35:48 by hed-dyb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_free_linked_list(t_stack *ptr)//--
 {
 	t_stack	*node_saver;
 
-	while (ptr)
+	while(ptr != NULL)
 	{
 		node_saver = ptr;
 		ptr = ptr->next;

@@ -6,7 +6,7 @@
 #    By: hed-dyb <hed-dyb@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 15:43:04 by hed-dyb           #+#    #+#              #
-#    Updated: 2023/04/16 22:00:32 by hed-dyb          ###   ########.fr        #
+#    Updated: 2023/04/17 00:31:35 by hed-dyb          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ BONUS_LIBRARY = bonus/push_swap_bonus.h
 CC = cc 
 RM = rm -f
 
-#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 FILES = mandatory/array.c mandatory/final_sort.c mandatory/first_sort.c \
 					mandatory/functions.c mandatory/instractions.c \
 					mandatory/instractions_2.c mandatory/less_than_5.c \
