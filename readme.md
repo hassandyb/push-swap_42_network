@@ -6,9 +6,7 @@ Because Swap_push isn’t as natural
 
 The Push_swap project focuses on sorting data using two stacks and a limited set of instructions. Your task is to sort integers using the minimum number of operations by implementing efficient algorithms.
 
-## Version
 
-8.1
 
 ## Contents
 
@@ -64,8 +62,3 @@ The Push_swap project requires you to sort a stack of integers using two stacks 
   - `rra` (reverse rotate a): Shift all elements of stack `a` down by 1.
   - `rrb` (reverse rotate b): Shift all elements of stack `b` down by 1.
   - `rrr`: Perform `rra` and `rrb` simultaneously.
-
-### Example
-
-Here's an example of sorting integers using these operations:
-
